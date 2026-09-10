@@ -1,0 +1,33 @@
+<div class="flex h-full flex-col overflow-hidden rounded-md group hover:shadow-md transition duration-150 text-white text-sm">
+  <%= link_to collection_link_url do %>
+    <div class="relative h-72 flex-shrink-0 overflow-hidden">
+      <img
+        src="<%= collection_card_image(collection) %>"
+        alt="<%= collection.title %>"
+        class="h-full w-full rounded-t-md object-cover transition-transform duration-300 group-hover:scale-105"
+        style="object-position: center 40%;">
+
+      <div class="absolute inset-0 flex flex-col justify-end">
+        <div class="w-full bg-black/20 backdrop-blur-xs py-2 px-2">
+          <h3 class="line-clamp-1 font-bold"><%= title %></h3>
+          <div class="flex items-center text-xs text-white/90">
+            <%= render Shared::IconComponent.new("map-pin", color: "white", size: 12) %>
+            <span class="ml-0.5"><%= places_count %></span>
+          </div>
+        </div>
+      </div>
+
+      <% if show_paid_link_for_free? || user_paid_for_collection? %>
+        <div class="absolute top-2 right-2 flex items-center rounded-md bg-black/20 px-2 py-0.5 backdrop-blur-xs text-xs">
+          <%= render Shared::IconComponent.new("lock-open", color: "white", size: 12) %>
+          <span class="ml-0.5"><%= t("collection_links.link.unlocked") %></span>
+        </div>
+      <% elsif requires_payment? %>
+        <div class="absolute top-2 right-2 flex items-center rounded-md bg-black/20 px-2 py-0.5 backdrop-blur-xs text-xs">
+          <%= render Shared::IconComponent.new("lock", color: "white", size: 12) %>
+          <span class="ml-0.5"><%= t("collection_links.link.locked") %></span>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

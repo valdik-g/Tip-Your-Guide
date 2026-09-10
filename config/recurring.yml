@@ -1,0 +1,11 @@
+# Recurring jobs for Solid Queue.
+# Nothing is scheduled in the sandbox — add entries here if your work needs them.
+#
+# default: &default
+#   some_job:
+#     class: SomeJob
+#     queue: default
+#     schedule: every hour
+
+development:
+production:

@@ -1,0 +1,39 @@
+/* === Tip Selector Emoji Reaction Styles === */
+/*
+ * Styles for individual emoji particles.
+ * Positioned absolutely within the parent container,
+ * with animation for floating up and fading out.
+ */
+.emoji-particle {
+  position: absolute;
+  bottom: 5%;
+  left: 50%; /* Specific position will be set by JavaScript */
+  font-size: 1.8rem; /* Emoji size */
+  opacity: 0;
+  user-select: none;
+  pointer-events: none;
+  /* If centering relative to left: 50% is needed */
+  /* transform: translateX(-50%); */
+  /* Apply animation */
+  animation: floatUpFadeOut 1.8s ease-out forwards;
+}
+
+/*
+ * Animation: float upward with slight scaling up,
+ * then scale down and gradually fade out.
+ */
+@keyframes floatUpFadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(0.8);
+  }
+  80% {
+    opacity: 0.8;
+    transform: translateY(-150px) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-200px) scale(0.5);
+  }
+}
+/* === End Tip Selector Emoji Reaction Styles === */

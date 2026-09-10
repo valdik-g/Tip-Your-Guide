@@ -1,0 +1,4 @@
+en:
+  administrate:
+    actions:
+      add_another_resource: "Add Another %{name}"

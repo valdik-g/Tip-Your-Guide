@@ -1,0 +1,15 @@
+<div class="flex-1">
+  <% if empty? %>
+    <div class="text-center p-6">
+      <div class="bg-blue-50 w-10 h-10 rounded-full inline-flex items-center justify-center text-xl">🤔</div>
+      <h4 class="text-xl font-bold text-gray-800 mt-2 mb-2"><%= empty_state_title %></h4>
+      <p class="text-gray-500 max-w-md mx-auto"><%= empty_state_description %></p>
+    </div>
+  <% else %>
+    <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-5">
+      <% collections.each do |collection| %>
+        <%= render Collections::CardComponent.new(collection:, paid_link: paid_link_for(collection:)) %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

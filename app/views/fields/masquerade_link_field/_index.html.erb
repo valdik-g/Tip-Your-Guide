@@ -1,0 +1,10 @@
+<% if field.has_required_roles? %>
+  <%= link_to(
+        field.url,
+        method: :post,
+        class: "action-show button button--alt",
+        data: {turbo_method: :post, turbo_confirm: field.confirm_message}
+      ) do %>
+    <%= field.label %>
+  <% end %>
+<% end %>

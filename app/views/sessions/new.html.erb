@@ -1,0 +1,112 @@
+<div class="mx-auto max-w-screen-xl -mt-15">
+  <section class="relative h-screen" aria-labelledby="hero-heading">
+    <div class="relative z-10 flex flex-col items-center justify-center h-full px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <h1 id="hero-heading" class="text-4xl font-bold tracking-tight text-center text-gray-900 sm:text-5xl md:text-6xl">
+        <span class="block"><%= t("views.sessions.new.title") %></span>
+      </h1>
+
+      <%= form_with url: session_url, class: "mt-8 sm:max-w-md mx-auto w-full space-y-4 rounded-lg p-6 shadow-lg bg-white/90 shadow-gray-200/50" do |form| %>
+        <div>
+          <label for="email" class="sr-only"><%= t("views.sessions.new.email_label") %></label>
+
+          <div class="relative">
+            <%= form.email_field :email,
+                  required: true,
+                  autofocus: true,
+                  autocomplete: "email",
+                  placeholder: t("views.sessions.new.email_placeholder"),
+                  value: params[:email],
+                  class: "w-full rounded-lg ring-1 ring-gray-200 p-4 pe-12 text-sm shadow-xs" %>
+
+            <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4 text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <div>
+          <label for="password" class="sr-only"><%= t("views.sessions.new.password_label") %></label>
+
+          <div class="relative">
+            <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: t("views.sessions.new.password_placeholder"), maxlength: 72, class: "w-full rounded-lg ring-1 ring-gray-200 p-4 pe-12 text-sm shadow-xs", id: "password-field" %>
+            <span class="absolute inset-y-0 end-0 grid place-content-center px-4 cursor-pointer" id="toggle-password" onclick="togglePasswordVisibility()">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4 text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                id="password-icon">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <script>
+          function togglePasswordVisibility() {
+            const passwordField = document.getElementById('password-field');
+            const passwordIcon = document.getElementById('password-icon');
+
+            if (passwordField.type === 'password') {
+              passwordField.type = 'text';
+              passwordIcon.innerHTML = `
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
+                />
+              `;
+            } else {
+              passwordField.type = 'password';
+              passwordIcon.innerHTML = `
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                />
+              `;
+            }
+          }
+        </script>
+
+        <%= form.submit t("views.sessions.new.submit"),
+              class: "block w-full px-4 py-3 font-medium text-white rounded-md transition-colors duration-200 bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600" %>
+        <div class="mt-4 text-sm text-gray-500 sm:mt-0">
+          <%= link_to t("views.sessions.new.forgot_password"), new_password_path, class: "text-gray-500 underline hover:no-underline" %>
+        </div>
+        <p class="text-center text-sm text-gray-500">
+          <%= t("views.sessions.new.no_account") %>
+          <%= link_to t("views.sessions.new.get_access"), root_path, class: "text-gray-500 underline hover:no-underline" %>
+        </p>
+      <% end %>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,19 @@
+<div
+  id="<%= id %>"
+  data-controller="modal"
+  class="modal hidden fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50 transition-opacity duration-300">
+  <div class="<%= content_classes %>">
+    <% if frame? && header.present? %>
+      <div class="modal-header mb-1 flex justify-between items-center" data-modal-target="header">
+        <%= header %>
+        <%= render_close_button %>
+      </div>
+    <% else %>
+      <%= render_close_button %>
+    <% end %>
+
+    <div class="modal-body" data-modal-target="body">
+      <%= content %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div style="max-width: 600px; margin: 0 auto; padding: 40px 20px; font-family: Arial, sans-serif;">
+  <div style="text-align: center; margin-bottom: 40px;">
+    <%= image_tag asset_path("logo.png"), alt: "Tip Your Guide", style: "max-width: 150px; height: auto;" %>
+  </div>
+
+  <div class="content-box">
+    <h1 style="color: #333333; font-size: 24px; margin-bottom: 20px; text-align: center;">
+      <%= t("mailers.collection_link_mailer.purchased.subject", guide_name: @collection_link.collection.user.full_name) %>
+    </h1>
+
+    <p style="color: #666666; font-size: 16px; line-height: 1.6; margin-bottom: 25px; text-align: center;">
+      <%= t("mailers.collection_link_mailer.purchased.body") %>
+    </p>
+
+    <div class="text-center">
+      <a href="<%= short_collection_link_url(@collection_link.link) %>" class="button" style="background-color: #4CAF50; color: #ffffff; text-decoration: none; display: inline-block;">
+        <%= t("mailers.collection_link_mailer.purchased.button") %>
+      </a>
+    </div>
+
+    <div class="divider"></div>
+
+    <p style="color: #888888; font-size: 14px; text-align: center; margin-bottom: 0;">
+      <%= t("mailers.collection_link_mailer.purchased.feedback") %>
+    </p>
+  </div>
+</div>

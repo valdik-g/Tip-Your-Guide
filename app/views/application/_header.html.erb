@@ -1,0 +1,60 @@
+<header class="bg-white border-b-1 border-gray-200">
+  <div class="mx-auto flex h-16 max-w-screen-xl items-center md:gap-8 justify-between px-4 sm:px-6 lg:px-8">
+    <a class="block text-teal-600" href="<%= root_url %>">
+      <span class="sr-only"><%= t("views.shared.header.home") %></span>
+      <img src="<%= asset_path "favicon/favicon.svg" %>" width="56" alt="<%= t("views.shared.head.title") %>">
+    </a>
+
+    <% if current_user.present? %>
+      <div class="flex items-center md:justify-between">
+        <nav aria-label="Global" class="hidden md:block">
+          <ul class="flex items-center gap-1 text-sm">
+            <li>
+              <%= link_to t("views.shared.header.management_panel"), admin_root_path, class: "text-gray-500 transition hover:text-gray-500/125 hover:underline" %>
+            </li>
+          </ul>
+        </nav>
+        <nav aria-label="Global" class="hidden md:block ml-10">
+          <ul class="flex items-center gap-1 text-sm">
+            <li>
+              <%= link_to t("views.shared.header.collection_links"), collection_links_path, class: "text-gray-500 transition hover:text-gray-500/125 hover:underline" %>
+            </li>
+          </ul>
+        </nav>
+        <nav aria-label="Global" class="hidden md:block ml-10">
+          <ul class="flex items-center gap-1 text-sm">
+            <li>
+              <%= link_to t("views.shared.header.your_public_profile"), guide_path(current_user.slug), class: "text-gray-500 transition hover:text-gray-500/125 hover:underline" %>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="group relative cursor-pointer">
+          <label for="mobile-menu" class="md:hidden block rounded-sm bg-gray-100 p-2 text-gray-500 transition hover:text-gray-500/125">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="size-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </label>
+          <input type="checkbox" id="mobile-menu" class="hidden peer">
+          <div class="absolute divide-solid divide-y-1 divide-gray-500/75 right-0 top-full mt-1 min-w-[200px] p-2 rounded-md shadow-lg z-10 bg-white border border-gray-200 transition-all duration-200 invisible opacity-0 peer-checked:visible peer-checked:opacity-100">
+            <div class="py-2">
+              <%= link_to t("views.shared.header.management_panel"), admin_root_path, class: "text-gray-500 transition hover:text-gray-500/125 hover:underline" %>
+            </div>
+            <div class="py-2">
+              <%= link_to t("views.shared.header.collection_links"), collection_links_path, class: "text-gray-500 transition hover:text-gray-500/125 hover:underline" %>
+            </div>
+            <div class="py-2">
+              <%= link_to t("views.shared.header.your_public_profile"), guide_path(current_user.slug), class: "text-gray-500 transition hover:text-gray-500/125 hover:underline" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</header>

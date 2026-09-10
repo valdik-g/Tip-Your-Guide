@@ -1,0 +1,38 @@
+<div class="container mx-auto px-4 py-8">
+  <article class="max-w-3xl mx-auto">
+    <% if @blog_post.featured_image.present? %>
+      <%= image_tag @blog_post.featured_image, class: "w-full h-96 object-cover rounded-lg mb-8" %>
+    <% end %>
+
+    <h1 class="text-4xl font-bold mb-4"><%= @blog_post.title %></h1>
+
+    <div class="flex items-center mb-8 text-gray-600">
+      <span class="mr-4">
+        <%= @blog_post.published_at&.strftime("%d.%m.%Y") %>
+      </span>
+      <span>
+        <%= @blog_post.author_name %>
+      </span>
+    </div>
+
+    <div class="prose max-w-none">
+      <%= @blog_post.content.html_safe %>
+    </div>
+
+    <div class="mt-8 pt-8 border-t">
+      <h2 class="text-2xl font-bold mb-4"><%= t("blog.share_post") %></h2>
+      <div class="flex space-x-4">
+        <%= link_to "https://twitter.com/intent/tweet?text=#{@blog_post.title}&url=#{request.original_url}",
+              target: "_blank",
+              class: "text-blue-400 hover:text-blue-600", rel: "noopener" do %>
+          <i class="fab fa-twitter text-2xl"></i>
+        <% end %>
+        <%= link_to "https://www.facebook.com/sharer/sharer.php?u=#{request.original_url}",
+              target: "_blank",
+              class: "text-blue-600 hover:text-blue-800", rel: "noopener" do %>
+          <i class="fab fa-facebook text-2xl"></i>
+        <% end %>
+      </div>
+    </div>
+  </article>
+</div>

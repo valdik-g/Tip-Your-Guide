@@ -1,0 +1,8 @@
+parallel: true
+format: progress
+ruby_version: 3.4
+default_ignores: true
+
+plugins:
+  - standard-rails
+  - standard-performance

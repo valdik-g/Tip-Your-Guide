@@ -1,0 +1,23 @@
+<% content_for(:title) { t("administrate.actions.edit_resource", name: page.page_title) } %>
+
+<header class="main-content__header">
+  <h1 class="main-content__page-title">
+    <%= content_for(:title) %>
+  </h1>
+
+  <%= content_for(:header_middle) %>
+
+  <%= content_for(:header_last) %>
+</header>
+
+<%= content_for(:before_main) %>
+
+<% if content_for?(:main) %>
+  <%= content_for(:main) %>
+<% else %>
+  <section class="main-content__body">
+    <%= render "form", page: page %>
+  </section>
+<% end %>
+
+<%= content_for(:after_main) %>

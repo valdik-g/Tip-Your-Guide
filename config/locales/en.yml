@@ -1,0 +1,446 @@
+---
+en:
+  errors:
+    authorization:
+      not_authorized: "You are not authorized to perform this action"
+  collection_links:
+    empty_state:
+      create_button: Create Your First Link
+      description: Get started by creating your first link. You can generate QR codes,
+        track visits, and easily share your links.
+      title: No Links Yet
+    index:
+      subtitle: Click the share button to generate a QR code
+      title: Your Links
+    link:
+      added_ago: Added %{time} ago
+      added_by: by %{name}
+      generating_qr: Generating QR code...
+      share: Share
+      visit: Visit
+      places: Places
+      views: Views
+      locked: Locked
+      unlocked: Unlocked
+    qr_code:
+      copy_link: Copy Link
+      scan_title: Scan this QR code to open the link
+  date:
+    day_names:
+      - Monday
+      - Tuesday
+      - Wednesday
+      - Thursday
+      - Friday
+      - Saturday
+      - Sunday
+  guides:
+    profile:
+      in: in
+    about_me_card:
+      interests: Interests
+      support_button: Support %{name}
+      title: About Me
+    contact_booking:
+      title: Book a Tour
+      contact_methods: Contact Methods
+      availability: Availability
+      preferred: Preferred
+      book_button: Book a Tour
+    events:
+      after_payment:
+        congrats: "Thank you for your purchase!"
+      show:
+        telegram_link: "Join Telegram group"
+        welcome_message: "You are about to experience an unforgettable journey with %{guide_name}!"
+        telegram_prompt: "Contact the guide and other participants in the Telegram chat"
+        more_picks_prompt: "Want more awesome picks? Check out the guide's profile and discover even more hidden spots."
+        guide_profile_link: "Visit guide profile"
+      card_component:
+        book_now: "Book Now"
+        free: "Free"
+        sold_out: "Sold out"
+        spots_left:
+          one: "%{count} spot left"
+          other: "%{count} spots left"
+        spots_total:
+          one: "%{count} spot"
+          other: "%{count} spots"
+        sold_out_soon: "Sold out soon"
+        soon: "Starting soon"
+      swipe_to_see_more: "← Swipe to see more →"
+      empty_state:
+        title: No Events Yet
+        description: This guide hasn't created any events yet. Check back later!
+        emoji: "🤔"
+      banner_modal:
+        pay: "Book Now"
+        no_banner: "No banner for this event"
+    show:
+      back_to_guide: "Back to guide"
+      collection:
+        published_on: "Published on %{date} by %{author}"
+        no_links: No links created for this collection
+        places_count: "%{count} places in this guide"
+        view_details: View Details
+      empty_state:
+        description: This guide hasn't created any collections or links yet.
+        title: No Collections Yet
+      subtitle: Personally curated best places to visit
+      upcoming_events: "Upcoming Events"
+      archived_events: "Archived Events"
+      tours: "Tours"
+      collections: "Collections"
+  home:
+    features:
+      secret_spots:
+        benefits:
+        - Share your exclusive local knowledge
+        - Help small restaurants and businesses get more customers
+        - Create and sell verified place lists
+        description: In the age of social media oversaturation, help travelers find genuine gems. Show them the places where locals actually go and help small businesses get the attention they deserve.
+        title: Curated Secret Spots
+      slow_travel:
+        benefits:
+        - Easily receive tips from grateful clients
+        - Create and sell digital guides
+        - Support local small businesses
+        description: "Our platform helps guides and local experts share their knowledge and get well-deserved rewards. We create an ecosystem where everyone wins: guides, travelers, and local businesses."
+        title: Slow Travel Philosophy
+      subtitle: Created for guides who want to share authentic local knowledge
+      tipping:
+        benefits:
+        - Multiple payment methods accepted
+        - No commission fees for guides
+        - Option to tip even after the tour ends
+        description: Our digital tipping platform makes it easy for travelers to show
+          appreciation for exceptional service. No awkward cash moments, just simple
+          gratitude without any fees for guides.
+        title: Seamless Tipping System
+      title: Key Features
+    signup_form:
+      submit: Join Now
+      email_placeholder: Your email
+      full_name_placeholder: How should we call you?
+      country_placeholder: Where are you from?
+      city_placeholder: Where do you live?
+      reason_placeholder: Why do you want to join the waitlist?
+      extra_info_placeholder: Tell us what do you think.
+      users_count: Join %{count} guides and travelers
+    hero:
+      commission_free_tipping_platform: Commission-Free Tipping Platform for Guides
+      join_waitlist: Join Now
+      users_count: Join %{count} guides and travelers
+      payments_count: "%{count} purchases made"
+      beta_badge: Currently in Beta
+      description: |
+        Instagram and TikTok are flooded with ads.
+        We show you the places where guides and locals actually go.
+      hidden_gems: "%{count}+ Hidden Gems"
+      subtitle: experiences
+      title_words:
+      - Authentic
+      - Verified
+      - Hidden
+      - Local
+      - Real
+      - Exclusive
+      for_business_link: "For Business"
+      for_guides_link: "For Solo Guides"
+    business_section:
+      title: "For Tour Companies & Agencies"
+      subtitle: "Manage guides, boost revenue, and strengthen your brand"
+      benefits:
+        easy_onboarding:
+          title: "Easy Onboarding"
+          text: "Quickly add your guides to the platform."
+        metrics:
+          title: "Comprehensive Analytics"
+          text: "Track revenue, guide popularity, and reviews in a single dashboard."
+        reviews:
+          title: "Review System"
+          text: "Collect and manage reviews to improve service."
+        branding:
+          title: "Branding"
+          text: "Your logo and style on your guides' and routes' pages."
+        reports:
+          title: "Financial Reports"
+          text: "Convenient data export for accounting."
+        support:
+          title: "Priority Support"
+          text: "Prompt resolution of your inquiries."
+    solo_guides_section:
+      title: "For Independent Guides & Content Creators"
+      subtitle: "Monetize your knowledge, earn 100% of revenue, and grow your audience"
+      benefits:
+        easy_signup:
+          title: "Quick Verification"
+          text: "Start earning in just a few clicks."
+        quick_payouts:
+          title: "Fast Payouts"
+          text: "Receive money directly and without delays."
+        zero_fees_html: "<b>Zero fees for you:</b> You receive 100% of sales. The tourist pays a small platform fee."
+        metrics:
+          title: "Your Statistics"
+          text: "Track views, sales, and reviews."
+        content_control:
+          title: "Full Control"
+          text: "Create and sell PDF guides, place lists, audio tours."
+        promo_page:
+          title: "Personal Page"
+          text: "Your showcase to attract tourists."
+  mailers:
+    footer: The Tip Your Guide Team
+    security_notice: "If you didn't request a password reset, please ignore this email."
+    passwords_mailer:
+      reset:
+        body: 'You can reset your password within the next 15 minutes on the following
+          link:'
+        button: Reset password
+        subject: Reset your password
+    waitlist_mailer:
+      welcome_message: "Welcome to our community! We're excited to have you on board."
+      future_opportunities: "Thank you for your interest. We'll keep your information for future opportunities."
+      approved:
+        body: You're in! You can now join the site.
+        button: Sign in now!
+        subject: You're in!
+      pending:
+        body: You're on the waitlist! We'll let you know when you can join.
+        subject: You're on the waitlist!
+      rejected:
+        body: You're out. Sorry, we decided to not move forward with you for this
+          time.
+        subject: You're out.
+    collection_link_mailer:
+      purchased:
+        subject: TY - You've purchased a collection from %{guide_name}!
+        body: "Thanks for purchasing a collection. It's available exclusively for you here: "
+        feedback: "Any questions or feedback? Let us know at contact@tipyour.guide"
+        button: View collection
+    events_mailer:
+      purchased:
+        subject: TY - You've going to event with %{guide_name}!
+        body: "Thanks for purchasing an event. You can find more details here: "
+        feedback: "Any questions or feedback? Let us know at contact@tipyour.guide"
+        button: View event
+    user:
+      invitation:
+        header: You've been invited to join %{agency_name} on Tip Your Guide!
+        sender_info: '%{sender_name} has invited you to join their team.'
+        body: 'To accept this invitation, click the link below:'
+        button: Accept invitation
+        expiration_notice: This invitation will expire in 7 days.
+        subject: "You've been invited to join %{agency_name} on Tip Your Guide"
+  passwords:
+    reset:
+      link_expired: "<p class='text-sm font-medium text-gray-900'>Password reset link
+        is invalid or has expired</p>"
+      send_instructions: "<p class='text-sm font-medium text-gray-900'>We've sent
+        password reset instructions</p><p class='mt-1 text-sm text-gray-500'>If an
+        account exists with that email address</p>"
+    update:
+      error: "<p class='text-sm font-medium text-gray-900'>Passwords did not match</p>"
+      success: "<p class='text-sm font-medium text-gray-900'>Your password has been
+        changed</p>"
+  sessions:
+    create:
+      invalid_credentials: Try another email address or password.
+      rate_limit: Try again later.
+  views:
+    passwords:
+      edit:
+        password_confirmation_label: Confirm new password
+        password_confirmation_placeholder: Repeat new password
+        password_label: New password
+        password_placeholder: Enter new password
+        submit: Save
+        title: Update your password
+      new:
+        email_label: Email
+        email_placeholder: Enter your email address
+        remember_password: Remember your password?
+        sign_in: Sign in
+        submit: Email reset instructions
+        title: Forgot your password?
+    sessions:
+      new:
+        email_label: Email
+        email_placeholder: Enter your email address
+        forgot_password: Forgot password?
+        get_access: Get access
+        no_account: No account?
+        password_label: Password
+        password_placeholder: Enter your password
+        submit: Sign In
+        title: Sign In
+    shared:
+      head:
+        title: Tip Your Guide
+      header:
+        collection_links: Collection Links
+        dashboard: Dashboard
+        home: Home
+        management_panel: Management Panel
+        your_public_profile: Your Public Profile
+      truncated_text:
+        show_more: Show More
+        show_less: Show Less
+      footer:
+        home: Home
+        copyright: "%{year} TipYourGuide"
+        blog: Blog
+        privacy_policy: Privacy Policy
+        terms_of_service: Terms of Service
+        contact_us: Contact Us
+    payments:
+      index:
+        title: Payments
+        total_amount: Total amount
+        last_payout_at: Last payout
+        empty_state:  No new payments yet
+        table:
+          paid_by: Paid by
+          amount: Amount
+          date: Date
+          status: Status
+          recipient: Recipient
+        payment_status:
+          no_payment_required: No payment required
+          paid: Paid
+          unpaid: Unpaid
+    agencies:
+      dashboard:
+        show:
+          invites:
+            title: Invites
+            empty_state: No invites yet
+            name: Name
+            email: Email
+            status: Status
+            actions: Actions
+            resend_invite: Resend invite
+            revoke_invite: Revoke invite
+            statuses:
+              pending: Pending
+              accepted: Accepted
+              revoked: Revoked
+          users:
+            title: Guides
+            empty_state: No users yet
+            name: Name
+            email: Email
+            status: Status
+            actions: Actions
+            view_profile: View profile
+          title: Dashboard
+          add_button: "Add"
+          empty_state: "No users yet"
+          guides:
+            name: Name
+            email: Email
+            actions: Actions
+            view_link: View
+          add_guides:
+            header: New Guides
+            label: Guide Emails
+            placeholder: Enter guide emails, put each on a separate line
+            submit: Send Invites
+            success: "Invites sent successfully"
+            error: "Error sending invites"
+      invites:
+        show:
+          title: Fill in your person information to join %{agency_name}
+          full_name_label: Full name
+          full_name_placeholder: How should we call you?
+          country_label: Country
+          country_placeholder: Where are you from?
+          city_label: City
+          city_placeholder: Where do you live?
+          password_label: Password
+          password_placeholder: Enter your password
+          password_confirmation_label: Confirm password
+          password_confirmation_placeholder: Repeat your password
+          submit: Join
+  waitlist:
+    create:
+      already_on_waitlist: "<p class='text-sm font-medium text-gray-900'>You are already
+        on the waitlist!</p>"
+      success: "<p class='text-sm font-medium text-gray-900'>Thank you for joining!</p><p
+        class='mt-1 text-sm text-gray-500'>We will contact you shortly!</p>"
+      captcha_failed: "<p class='text-sm font-medium text-gray-900'>Captcha verification failed. Please try again.</p>"
+    reasons:
+      local_guide: "I'm a local guide looking to get more clients"
+      local_expert: "I'm a local expert looking to share my knowledge"
+      traveler_sharer: "I'm a traveler looking to share my knowledge"
+      traveler_seeker: "I'm a traveler looking for a local guide or expert"
+  blog:
+    title: "Tip Your Guide Blog"
+    date_format: "%m/%d/%Y"
+    author: "Author"
+    read_more: "Read more"
+    no_posts: "No posts yet"
+    share_post: "Share post"
+    categories:
+      all: "All categories"
+      guides: "For guides"
+      tourists: "For tourists"
+      tips: "Tips"
+      trends: "Trends"
+  helpers:
+    label:
+      user:
+        guide_link: "Profile page"
+    custom:
+      guide_link:
+        label:  "Visit"
+      masquerade_link:
+        label: "Login as %{name}"
+        confirm_message: "Are you sure you want to log in as %{email}?"
+  administrate:
+    field_hints:
+      user:
+        interests: 'For example: history, cooking, nature'
+      collection:
+        collection_price: "Price of the collection in cents. For example, 1000 = $10.00. Only applicable to paid collections!"
+  admin:
+    authorization:
+      denied: "Access denied."
+    masquerades:
+      create:
+        guide_only_alert: "Can only masquerade as guides."
+        start_notice: "You are now logged in as %{email}. Use the link in the banner to switch back."
+    users:
+      index:
+        masquerade_link: "Login as"
+        masquerade_confirm: "Are you sure you want to log in as %{email}?"
+    bookings:
+      refunded_flash: "Refund issued."
+      refund_form:
+        title: "Manual refund for booking #%{id}"
+        intro: "Issue a partial or full refund (booking total: %{total} cents). This bypasses the cancellation policy."
+        amount_label: "Refund amount (cents)"
+        submit: "Issue refund"
+        cancel: "Back"
+  masquerades:
+    destroy:
+      stop_notice: "You have returned to your administrative account."
+    create:
+      require_masquerade_alert: "You are not currently masquerading."
+  layouts:
+    application:
+      masquerade_banner:
+        text: "You are logged in as %{current_email}. Original user: %{admin_email}."
+        stop_link: "Return to your account"
+  components:
+    tips:
+      modal:
+        title: "Tip %{name}"
+        close: "Close"
+      selector:
+        payment_method: "Select payment method"
+        title: "Thanks for your support!"
+        choose_amount: "Choose an amount:"
+        custom_amount_label: "Enter amount (€):"
+        pay_now: "Pay Now"
+        custom_amount_button: "Choose your own amount"

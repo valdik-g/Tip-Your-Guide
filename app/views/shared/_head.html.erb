@@ -1,0 +1,41 @@
+<head>
+  <title><%= content_for(:title) || t("views.shared.head.title") %></title>
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= yield :head %>
+
+  <%= render "application/favicon" %>
+  <%= render "application/seo_fields" %>
+  <%= render "application/structured_data" %>
+
+  <link rel="canonical" href="<%= canonical_url %>">
+
+  <%# Daylight display typeface for dashboard heros and H1s. Body type unaffected. %>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap">
+
+  <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+
+  <%= cloudflare_turnstile_script_tag %>
+
+  <%= render "components/flashes/script" %>
+
+  <% if Rails.env.development? %>
+    <script src="http://localhost:35729/livereload.js?snipver=1"></script>
+  <% end %>
+
+  <% if Rails.env.production? %>
+    <%= render "components/posthog/script" %>
+    <%= render "components/simple_analytics/script" %>
+    <%= render "components/ahrefs/script" %>
+  <% end %>
+</head>

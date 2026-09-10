@@ -1,0 +1,18 @@
+<section id="features" class="py-4 bg-white">
+  <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
+        <%= t("home.features.title") %>
+      </h2>
+      <p class="max-w-2xl mx-auto mt-4 text-xl text-gray-500">
+        <%= t("home.features.subtitle") %>
+      </p>
+    </div>
+
+    <%= render(Home::Features::TippingComponent.new) %>
+
+    <%= render(Home::Features::SlowTravelComponent.new) %>
+
+    <%= render(Home::Features::SecretSpotsComponent.new) %>
+  </div>
+</section>

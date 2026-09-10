@@ -1,0 +1,15 @@
+<div class="field-unit__label">
+  <%= f.label field.attribute %>
+</div>
+<div class="field-unit__field">
+  <%= f.hidden_field field.attribute, value: "", multiple: true %>
+  <% field.options.each do |code, label| %>
+    <label class="languages-field__option">
+      <%= check_box_tag "#{f.object_name}[#{field.attribute}][]",
+                        code,
+                        field.selected?(code),
+                        id: "#{f.object_name}_#{field.attribute}_#{code}" %>
+      <%= label %>
+    </label>
+  <% end %>
+</div>

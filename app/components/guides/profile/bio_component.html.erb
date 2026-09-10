@@ -1,0 +1,12 @@
+<div class="mb-2">
+  <div class="flex items-center space-x-2">
+    <div class="bg-blue-50 w-10 h-10 rounded-full inline-flex items-center justify-center text-xl">
+      <%= render Shared::IconComponent.new("message-circle", color: "blue-500") %>
+    </div>
+    <h4 class="text-lg font-bold tracking-tight text-gray-900"><%= t("guides.about_me_card.title") %></h4>
+  </div>
+
+  <div class="prose-sm sm:prose-base">
+    <%= about_text %>
+  </div>
+</div>

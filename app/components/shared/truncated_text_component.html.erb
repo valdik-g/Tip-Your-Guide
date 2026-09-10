@@ -1,0 +1,35 @@
+<div class="truncated-text-component relative <%= container_classes %>"
+     data-controller="truncated-text"
+     data-truncated-text-button-show-more-text-value="<%= show_more_text %>"
+     data-truncated-text-button-show-less-text-value="<%= show_less_text %>"
+     data-truncated-text-max-height-value="<%= max_height %>">
+
+  <%# Text content area %>
+  <div id="<%= id %>-content"
+       class="overflow-hidden transition-all duration-300 ease-in-out <%= content_classes %>"
+       data-truncated-text-target="content"
+       style="max-height: <%= max_height %>px;">
+    <%= text %>
+  </div>
+
+  <%# Gradient overlay that appears when truncated %>
+  <div data-truncated-text-target="overlay"
+      class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none opacity-0 transition-opacity duration-200">
+  </div>
+
+  <%# Show more/less button %>
+  <div class="text-center mt-2" data-truncated-text-target="buttonContainer" style="display: none; position:relative;">
+    <button type="button"
+            class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-500/125 hover:underline focus:outline-none"
+            data-action="click->truncated-text#toggle">
+      <span data-truncated-text-target="buttonText"><%= show_more_text %></span>
+      <svg xmlns="http://www.w3.org/2000/svg"
+           class="h-5 w-5 ml-1 transition-transform duration-200"
+           viewBox="0 0 20 20"
+           fill="currentColor"
+           data-truncated-text-target="chevron">
+        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+      </svg>
+    </button>
+  </div>
+</div>

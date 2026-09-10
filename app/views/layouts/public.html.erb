@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="<%= params[:locale] || I18n.locale %>">
+  <%= render "shared/head" %>
+  <body class="flex flex-col antialiased text-slate-800 prose">
+    <%= render "components/flashes/notice" %>
+
+    <main class="mx-auto">
+      <%= yield %>
+    </main>
+
+    <%= render "shared/footer" %>
+  </body>
+</html>

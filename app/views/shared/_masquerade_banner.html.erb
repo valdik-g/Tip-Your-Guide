@@ -1,0 +1,8 @@
+<% if is_masquerading? && true_admin_user %>
+  <div style="background-color: oklch(90.5% .182 98.111); padding: 12px 0; color: #000000; text-align: center; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid oklch(79.5% .184 86.047); box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <span style="font-weight: 600; font-family: 'system-ui'; margin-left: 1.25rem;">
+      ⚠️ <%= t("layouts.application.masquerade_banner.text", current_email: current_user.email, admin_email: true_admin_user.email) %>
+      <%= link_to t("layouts.application.masquerade_banner.stop_link"), masquerade_path, data: {turbo_method: :delete}, style: "text-decoration: underline; margin-left: 8px; color: #000000;" %>
+    </span>
+  </div>
+<% end %>

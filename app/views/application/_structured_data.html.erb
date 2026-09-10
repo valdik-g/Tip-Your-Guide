@@ -1,0 +1,31 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "Tip Your Guide",
+  "description": "Connect with local tour guides worldwide. Discover hidden gems and authentic experiences.",
+  "url": "https://tipyour.guide",
+  "logo": "<%= asset_url("favicon/favicon.svg") %>",
+  "sameAs": [
+    "https://x.com/tip_your_guide"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "Global"
+  },
+  "areaServed": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": "0",
+      "longitude": "0"
+    },
+    "geoRadius": "20000 km"
+  },
+  "offers": {
+    "@type": "Offer",
+    "description": "Connect with local tour guides worldwide",
+    "availability": "https://schema.org/InStock"
+  }
+}
+</script>

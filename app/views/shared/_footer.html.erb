@@ -1,0 +1,16 @@
+<footer class="mt-16 border-t border-gray-100 bg-white flex flex-row justify-between align-center sm:px-6 lg:px-8">
+  <a href="<%= root_path %>" class="self-center">
+    <div class="ml-2 flex items-center justify-center space-x-2">
+      <%= image_tag asset_path("favicon/favicon.svg"), class: "h-6 w-auto", alt: "TipYourGuide Logo" %>
+      <span class="text-sm text-gray-500 hidden md:block">&copy; <%= t("views.shared.footer.copyright", year: Time.current.year) %></span>
+    </div>
+  </a>
+
+  <div class="flex flex-wrap space-x-1 mr-2 md:space-x-6 self-center">
+    <a href="<%= home_path %>" class="text-sm text-gray-500 hover:text-gray-500/125 hover:underline px-2 py-1"><%= t("views.shared.footer.home") %></a>
+    <a href="<%= blog_path(I18n.locale) %>" class="text-sm text-gray-500 hover:text-gray-500/125 hover:underline px-2 py-1"><%= t("views.shared.footer.blog") %></a>
+    <a href="<%= privacy_path %>" class="text-sm text-gray-500 hover:text-gray-500/125 hover:underline px-2 py-1"><%= t("views.shared.footer.privacy_policy") %></a>
+    <a href="<%= tos_path %>" class="text-sm text-gray-500 hover:text-gray-500/125 hover:underline px-2 py-1"><%= t("views.shared.footer.terms_of_service") %></a>
+    <a href="mailto:contact@tipyour.guide" class="text-sm text-gray-500 hover:text-gray-500/125 hover:underline px-2 py-1"><%= t("views.shared.footer.contact_us") %></a>
+  </div>
+</footer>

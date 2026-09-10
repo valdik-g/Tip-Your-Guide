@@ -1,0 +1,12 @@
+<div class="mt-6">
+  <div class="flex items-center space-x-2">
+    <%= render Shared::IconComponent.new("heart", color: "pink-500") %>
+    <h4 class="text-lg font-semibold text-gray-900"><%= t("guides.about_me_card.interests") %></h4>
+  </div>
+
+  <div class="flex flex-wrap gap-2 mt-3">
+    <% interests.each do |interest| %>
+      <%= render Shared::TagComponent.new(text: interest) %>
+    <% end %>
+  </div>
+</div>

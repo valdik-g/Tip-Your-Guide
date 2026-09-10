@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <%= render "shared/head" %>
+
+  <body class="flex flex-col antialiased text-slate-800 prose">
+    <%= render "shared/masquerade_banner" %>
+    <%= render "application/header" %>
+
+    <%= render "components/flashes/notice" %>
+    <%= render "components/flashes/alert" %>
+
+    <main class="container mx-auto mt-4 flex flex-col">
+      <%= render Dashboard::ShellComponent.new(
+            active: content_for?(:dashboard_active) ? content_for(:dashboard_active).strip.to_sym : :calendar,
+            today_count: @today_count || 0,
+            inbox_count: @inbox_count || 0,
+            hero_earnings: @hero_earnings
+          ) do |shell| %>
+        <% shell.with_body do %>
+          <%= yield %>
+        <% end %>
+      <% end %>
+    </main>
+
+    <%= render "shared/footer" %>
+  </body>
+</html>

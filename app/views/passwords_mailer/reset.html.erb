@@ -1,0 +1,29 @@
+<!-- Logo Section -->
+<div style="text-align: center; margin-bottom: 40px;">
+  <%= image_tag asset_path("logo.png"), alt: "Tip Your Guide", style: "max-width: 150px; height: auto;" %>
+</div>
+
+<!-- Main Content -->
+<div class="content-box">
+  <h1 style="color: #333333; font-size: 24px; margin-bottom: 20px; text-align: center;">
+    <%= t("mailers.passwords_mailer.reset.subject") %>
+  </h1>
+
+  <p style="color: #666666; font-size: 16px; line-height: 1.6; margin-bottom: 25px; text-align: center;">
+    <%= t("mailers.passwords_mailer.reset.body") %>
+  </p>
+
+  <!-- Button Container -->
+  <div class="text-center">
+    <a href="<%= edit_password_url(@user.password_reset_token) %>" class="button" style="background-color: #4CAF50; color: #ffffff; text-decoration: none; display: inline-block;">
+      <%= t("mailers.passwords_mailer.reset.button") %>
+    </a>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Security Notice -->
+  <p style="color: #888888; font-size: 14px; text-align: center; margin-bottom: 0;">
+    <%= t("mailers.security_notice") %>
+  </p>
+</div>

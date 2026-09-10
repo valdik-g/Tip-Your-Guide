@@ -1,0 +1,22 @@
+<!-- Logo Section -->
+<div style="text-align: center; margin-bottom: 40px;">
+  <%= image_tag asset_path("logo.png"), alt: "Tip Your Guide", style: "max-width: 150px; height: auto;" %>
+</div>
+
+<!-- Main Content -->
+<div class="content-box">
+  <h1 style="color: #333333; font-size: 24px; margin-bottom: 20px; text-align: center;">
+    <%= t("mailers.waitlist_mailer.rejected.subject") %>
+  </h1>
+
+  <p style="color: #666666; font-size: 16px; line-height: 1.6; margin-bottom: 25px; text-align: center;">
+    <%= t("mailers.waitlist_mailer.rejected.body") %>
+  </p>
+
+  <div class="divider"></div>
+
+  <!-- Future Opportunities -->
+  <p style="color: #888888; font-size: 14px; text-align: center; margin-bottom: 0;">
+    <%= t("mailers.waitlist_mailer.future_opportunities") %>
+  </p>
+</div>

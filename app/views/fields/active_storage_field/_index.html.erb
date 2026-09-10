@@ -1,0 +1,5 @@
+<% if field.attachable? %>
+  <%= image_tag field.variant_url(resize_to_fill: [50, 50]), class: "rounded-full" %>
+<% else %>
+  -
+<% end %>

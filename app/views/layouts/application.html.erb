@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <%= render "shared/head" %>
+
+  <body class="flex flex-col antialiased text-slate-800 prose">
+    <%= render "shared/masquerade_banner" %>
+    <%= render "application/header" %>
+
+    <%= render "components/flashes/notice" %>
+    <%= render "components/flashes/alert" %>
+
+    <main class="container mx-auto mt-4 flex flex-col">
+      <%= yield %>
+    </main>
+
+    <%= render "shared/footer" %>
+  </body>
+</html>

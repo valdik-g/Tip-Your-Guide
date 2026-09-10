@@ -1,0 +1,11 @@
+<div class="field-unit__label">
+  <%= f.label field.attribute %>
+</div>
+<div class="field-unit__field">
+  <% if field.attachable? %>
+    <div class="mb-4">
+      <%= image_tag field.variant_url(resize_to_fill: [100, 100]), class: "rounded-full" %>
+    </div>
+  <% end %>
+  <%= f.file_field field.attribute %>
+</div>

@@ -1,0 +1,27 @@
+<div class="relative overflow-hidden bg-white py-2 mb-4 md:mb-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-row items-center justify-start gap-x-4 sm:gap-x-8 lg:gap-x-12">
+      <div class="flex-shrink-0 mb-6 lg:mb-0">
+        <div class="relative h-32 w-32 sm:h-48 sm:w-48 lg:h-80 lg:w-80 rounded-full overflow-hidden shadow-md">
+          <%= profile_image %>
+        </div>
+      </div>
+
+      <div class="flex-1 max-w-lg">
+        <div class="text-left">
+          <h1 class="text-gray-900 text-4xl md:text-6xl font-extrabold tracking-tight">
+            <%= guide.full_name %>
+          </h1>
+
+          <div class="flex items-center text-left text-xs sm:text-sm tracking-tight text-gray-900/80 mt-2">
+            <%= render Shared::IconComponent.new("map-pin", color: "gray-900/80", size: 16) %>
+            <%= location %>
+          </div>
+
+          <div class="mt-2 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start xl:w-6/12 lg:w-7/12 md:w-full sm:w-full">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

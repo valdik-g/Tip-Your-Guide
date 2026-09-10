@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      /* Base styles */
+      body {
+        font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+        line-height: 1.5;
+        color: #333333;
+        margin: 0;
+        padding: 0;
+        width: 100% !important;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+      }
+
+      /* Container styles */
+      .email-wrapper {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      /* Typography */
+      h1 {
+        color: #333333;
+        font-size: 24px;
+        line-height: 1.3;
+        margin: 0 0 20px;
+        text-align: center;
+      }
+
+      p {
+        margin: 0 0 20px;
+        color: #666666;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      /* Content box */
+      .content-box {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+
+      /* Button styles */
+      .button {
+        display: inline-block;
+        background-color: #4CAF50;
+        color: #ffffff !important;
+        text-decoration: none;
+        padding: 14px 32px;
+        border-radius: 6px;
+        font-weight: bold;
+        font-size: 16px;
+        text-align: center;
+        margin: 20px 0;
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        margin-top: 30px;
+        color: #999999;
+        font-size: 12px;
+      }
+      .footer p {
+        margin: 5px 0;
+        color: #999999;
+        font-size: 12px;
+      }
+
+      /* Utility classes */
+      .text-center { text-align: center; }
+      .mt-30 { margin-top: 30px; }
+      .mb-20 { margin-bottom: 20px; }
+      .divider {
+        border-top: 1px solid #eeeeee;
+        margin: 20px 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="email-wrapper">
+      <%= yield %>
+
+      <div class="footer">
+        <p>© <%= Time.current.year %> Tip Your Guide. All rights reserved.</p>
+        <p><%= t("mailers.footer") %></p>
+      </div>
+    </div>
+  </body>
+</html>

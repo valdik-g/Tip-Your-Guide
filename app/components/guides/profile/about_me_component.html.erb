@@ -1,0 +1,7 @@
+<div class="w-full">
+  <div class="rounded-lg shadow-sm p-6">
+    <% if guide.bio.present? %>
+      <%= render Guides::Profile::BioComponent.new(bio: guide.bio) %>
+    <% end %>
+  </div>
+</div>

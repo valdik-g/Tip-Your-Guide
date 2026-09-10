@@ -1,0 +1,19 @@
+<meta name="description" content="<%= content_for(:meta_description) || "Digital tipping platform for tour guides. Easily tip your guide after amazing tours and experiences. Connect with local experts, discover hidden gems, and show appreciation through our secure digital tipping system." %>">
+<meta name="keywords" content="<%= content_for(:meta_keywords) || "digital tipping tour guides, digital tipping tours, tipping tour guides, tour guide tips, get your guide tipping, tip guide, tour guide tip, local guides, authentic experiences" %>">
+
+<meta property="og:site_name" content="Tip Your Guide">
+<meta property="og:title" content="<%= content_for(:og_title) || "Digital Tipping Platform for Tour Guides | Tip Your Guide" %>">
+<meta property="og:description" content="<%= content_for(:og_description) || "Show appreciation to your tour guide through our secure digital tipping platform. Connect with local experts, discover hidden gems, and make tipping easy and convenient." %>">
+<meta property="og:type" content="website">
+<meta property="og:url" content="<%= request.original_url %>">
+
+<meta property="og:image" content="<%= content_for(:og_image) || asset_url("favicon/web-app-manifest-512x512.png") %>">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="<%= content_for(:twitter_title) || "Digital Tipping Platform for Tour Guides" %>">
+<meta name="twitter:description" content="<%= content_for(:twitter_description) || "Show appreciation to your tour guide through our secure digital tipping platform. Connect with local experts, discover hidden gems, and make tipping easy and convenient." %>">
+<meta name="twitter:image" content="<%= content_for(:twitter_image) || asset_url("favicon/web-app-manifest-512x512.png") %>">
+
+<link rel="canonical" href="<%= root_url %>">

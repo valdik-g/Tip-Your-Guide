@@ -1,0 +1,44 @@
+<%= tag.turbo_frame id: "qr-code-#{@link.id}" do %>
+  <div class="flex items-center px-4 py-4 bg-gray-50 ring-1 ring-zinc-950/10 sm:flex-row flex-col gap-2 sm:items-start">
+    <div class="visible sm:invisible self-end">
+      <button type="button"
+              data-controller="qr-code"
+              data-action="click->qr-code#hide"
+              data-qr-code-id-value="<%= @link.id %>"
+              class="text-gray-400 hover:text-gray-500">
+        <%= render Shared::IconComponent.new("x", color: "gray-400", size: 20) %>
+      </button>
+    </div>
+    <div style="width: 250px; height: 250px;" class="bg-white p-2 rounded-lg shadow-sm sm:mr-4 self-center">
+      <%= @qr_code.html_safe %>
+    </div>
+
+    <div class="flex-1">
+      <div class="flex justify-between sm:items-start items:center">
+        <h3 class="text-sm font-medium text-gray-900"><%= t("collection_links.qr_code.scan_title") %></h3>
+
+        <button type="button"
+                data-controller="qr-code"
+                data-action="click->qr-code#hide"
+                data-qr-code-id-value="<%= @link.id %>"
+                class="text-gray-400 hover:text-gray-500 hidden sm:flex">
+          <%= render Shared::IconComponent.new("x", color: "gray-500", size: 20) %>
+        </button>
+      </div>
+
+      <p class="mt-1 text-xs text-gray-500 text-center sm:text-left"><%= @link.collection_link_url %></p>
+
+      <div data-controller="clipboard"
+           data-action="click->clipboard#copy"
+           data-clipboard-text-value="<%= @link.collection_link_url %>"
+           class="mt-3 flex space-x-2 justify-self-center sm:justify-self-start">
+        <%= render Shared::Buttons::SimpleComponent.new(url: "#") do %>
+          <div class="clipboard-content inline-flex items-center">
+            <%= render Shared::IconComponent.new("clipboard", color: "gray-600") %>
+            <span class="text-gray-600 ml-1"><%= t("collection_links.qr_code.copy_link") %></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

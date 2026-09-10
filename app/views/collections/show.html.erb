@@ -1,0 +1,44 @@
+<%= content_for :title, "#{@collection.title} - #{t("views.shared.head.title")}" %>
+<%= content_for :og_title, "#{@collection.title} - #{t("views.shared.head.title")}" %>
+<% if @collection.thumbnail.attached? %>
+  <% variant = @collection.thumbnail.variant(resize_to_limit: [512, 512]) %>
+  <%= content_for :og_image, url_for(variant) %>
+<% end %>
+
+<div class="max-w-[600px] mb-4 mx-auto px-4 md:px-0">
+  <%= link_to guide_path(@collection.user.slug), class: "inline-flex items-center text-sm text-gray-500 hover:text-gray-500/125 hover:underline" do %>
+    <%= render Shared::IconComponent.new("arrow-left", color: "gray-500", size: 16) %>
+    <span class="ml-1"><%= t("guides.show.back_to_guide") %></span>
+  <% end %>
+</div>
+
+<h1 class="text-4xl text-center font-semibold text-gray-900 mb-4"><%= @collection.title %></h1>
+
+<div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 mb-4 text-sm text-gray-500">
+  <span class="inline-flex items-center">
+    <%= render Shared::IconComponent.new("rss", color: "gray-500", size: 12) %>
+    <span class="ml-1"><%= t("guides.show.collection.published_on", date: @collection.created_at.strftime("%B %d, %Y"), author: @collection.user.full_name) %></span>
+  </span>
+
+  <% if @places.any? %>
+    <span class="inline-flex items-center">
+      <%= render Shared::IconComponent.new("map-pin", color: "gray-500", size: 12) %>
+      <span class="ml-1"><%= t("guides.show.collection.places_count", count: @places.count) %></span>
+    </span>
+  <% end %>
+</div>
+
+<div class="max-w-[600px] mb-10 mx-auto px-4 md:px-0">
+  <%= render(
+    Shared::TruncatedTextComponent.new(
+      id: "collection-description",
+      text: @collection.description,
+      max_height: 200,
+      container_classes: "max-w-[600px] mb-10 mx-auto px-4 md:px-0"
+    )
+  ) %>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mx-auto">
+  <%= render(Places::CardComponent.with_collection(@places)) %>
+</div>

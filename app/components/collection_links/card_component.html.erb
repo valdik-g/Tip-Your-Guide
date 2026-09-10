@@ -1,0 +1,46 @@
+<li id="<%= dom_id(@link) %>" class="hover:bg-gray-50 transition duration-150">
+  <div class="px-4 py-4 sm:px-6 flex items-center justify-between">
+    <div class="flex-1 min-w-0 pr-4">
+      <h4 class="text-sm font-medium text-blue-600 truncate">
+        <%= @link.collection.title %>
+      </h4>
+      <div class="mt-1 text-xs text-gray-400">
+        <%= t("collection_links.link.added_ago", time: time_ago_in_words(@link.created_at)) %>
+
+        <%= t("collection_links.link.added_by", name: @link.collection.user.full_name) %>
+
+        &nbsp;—&nbsp;
+        <%= @link.collection.places_count %> <%= t("collection_links.link.places") %>
+
+        &nbsp;—&nbsp;
+        <%= @link.views_count %> <%= t("collection_links.link.views") %>
+      </div>
+    </div>
+
+    <div class="flex flex-shrink-0 space-x-2">
+      <%= render Shared::Buttons::BaseComponent.new(url: @link.collection_link_url) do %>
+        <%= t("collection_links.link.visit") %>
+      <% end %>
+
+      <div data-controller="qr-code"
+           data-action="click->qr-code#generate"
+           data-qr-code-url-value="<%= @link.collection_link_url %>"
+           data-qr-code-id-value="<%= @link.id %>"
+           class="inline-flex items-center">
+        <%= render Shared::Buttons::PrimaryComponent.new(url: "#") do %>
+          <%= render Shared::IconComponent.new("share", color: "white") %>
+          <span class="ml-1"><%= t("collection_links.link.share") %></span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div id="qr-code-<%= @link.id %>-container" class="qr-code-container hidden w-full">
+    <%= tag.turbo_frame id: "qr-code-#{@link.id}", class: "block w-full" do %>
+      <div class="flex justify-center items-center py-6 px-4 bg-gray-50 ring-1 ring-zinc-950/10 w-full">
+        <%= render Shared::IconComponent.new("loader-2", color: "blue-500") %>
+        <span class="text-sm text-gray-500"><%= t("collection_links.link.generating_qr") %></span>
+      </div>
+    <% end %>
+  </div>
+</li>

@@ -1,0 +1,61 @@
+
+<section class="relative z-10 p-16 mx-auto bg-blue-50">
+  <div class="grid items-center justify-center">
+    <div class="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+
+      <% if session[:waitlist_email].present? %>
+        <p class="text-sm text-gray-500 font-medium">
+          <%= link_to "Already with us?", new_session_path, class: submit_button_class %>
+        </p>
+      <% else %>
+        <%= form_with url: waitlists_path, class: "flex flex-col w-full max-w-md gap-4" do |form| %>
+          <%= form.email_field :email,
+                required: true,
+                autocomplete: "email",
+                placeholder: t("home.signup_form.email_placeholder"),
+                value: session[:waitlist_email],
+                disabled: session[:waitlist_email].present?,
+                id: "waitlist_email",
+                class: input_class %>
+
+        <%= form.text_field :full_name,
+              required: true,
+              autocomplete: "name",
+              placeholder: t("home.signup_form.full_name_placeholder"),
+              class: input_class %>
+
+        <div class="grid grid-cols-2 gap-4">
+          <%= form.select :country, country_options, {include_blank: t("home.signup_form.country_placeholder")},
+                required: true,
+                class: input_class %>
+
+          <%= form.text_field :city,
+                placeholder: t("home.signup_form.city_placeholder"),
+                class: input_class %>
+        </div>
+
+        <%= form.select :reason, reason_options, {include_blank: t("home.signup_form.reason_placeholder")},
+              required: true,
+              placeholder: t("home.signup_form.reason_placeholder"),
+              class: input_class %>
+
+        <%= form.text_area :extra_info,
+              placeholder: t("home.signup_form.extra_info_placeholder"),
+              rows: 3,
+              class: input_class %>
+
+        <%= helpers.cloudflare_turnstile(data: {size: "invisible"}) %>
+
+        <%= form.submit t("home.signup_form.submit"),
+              disabled: session[:waitlist_email].present?,
+              class: submit_button_class %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="mt-8 flex items-center">
+      <div class="flex -space-x-2 overflow-hidden mr-4"><%= guides_photos %></div>
+      <p class="text-sm text-gray-500 font-medium"><%= guides_count %></p>
+    </div>
+  </div>
+</section>

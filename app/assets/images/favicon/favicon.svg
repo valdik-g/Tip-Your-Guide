@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" width="1000" height="1000"><style>
+    #light-icon {
+      display: inline;
+    }
+    #dark-icon {
+      display: none;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      #light-icon {
+        display: none;
+      }
+      #dark-icon {
+        display: inline;
+      }
+    }
+  </style><g id="light-icon"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" width="1000" height="1000"><g clip-path="url(#SvgjsClipPath1249)"><rect width="1000" height="1000" fill="#ffffff"></rect><g transform="matrix(1.589825119236884,0,0,1.589825119236884,0,3.179650238473755)"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" width="629" height="625"><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 629 625">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  <clipPath id="SvgjsClipPath1249"><rect width="1000" height="1000" x="0" y="0" rx="300" ry="300"></rect></clipPath></defs>
+  <path class="cls-1" d="M629,0v625H0V0h629ZM362.5,205H104v55.5l80-1.5v138h66v-138l46.77.48c9.33,1.18,18.87-.08,28.23,1.27,18.81,28.11,37.48,56.39,53,86.5v49.75h69v-45.25c25.15-51.13,56.63-98.69,87-146.75h-71.5l-49.26,93-50.74-93Z"></path>
+  <path d="M362.5,205l50.74,93,49.26-93h71.5c-30.37,48.06-61.85,95.62-87,146.75v45.25h-69v-49.75c-15.52-30.11-34.19-58.4-53-86.5-9.37-1.35-18.9-.08-28.23-1.27l-46.77-.48v138h-66v-138l-80,1.5v-55.5h258.5Z"></path>
+</svg></svg></g></g></svg></g><g id="dark-icon"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" width="1000" height="1000"><g clip-path="url(#SvgjsClipPath1250)"><rect width="1000" height="1000" fill="#ffffff"></rect><g transform="matrix(1.4308426073131955,0,0,1.4308426073131955,50,52.86168521462639)"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" width="629" height="625"><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 629 625">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  <clipPath id="SvgjsClipPath1250"><rect width="1000" height="1000" x="0" y="0" rx="300" ry="300"></rect></clipPath></defs>
+  <path class="cls-1" d="M629,0v625H0V0h629ZM362.5,205H104v55.5l80-1.5v138h66v-138l46.77.48c9.33,1.18,18.87-.08,28.23,1.27,18.81,28.11,37.48,56.39,53,86.5v49.75h69v-45.25c25.15-51.13,56.63-98.69,87-146.75h-71.5l-49.26,93-50.74-93Z"></path>
+  <path d="M362.5,205l50.74,93,49.26-93h71.5c-30.37,48.06-61.85,95.62-87,146.75v45.25h-69v-49.75c-15.52-30.11-34.19-58.4-53-86.5-9.37-1.35-18.9-.08-28.23-1.27l-46.77-.48v138h-66v-138l-80,1.5v-55.5h258.5Z"></path>
+</svg></svg></g></g></svg></g></svg>

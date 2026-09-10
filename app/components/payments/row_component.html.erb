@@ -1,0 +1,25 @@
+<tr class="hover:bg-gray-50">
+  <% if current_user.is_admin? %>
+    <td class="px-6 py-4 whitespace-nowrap">
+      <div class="text-sm text-blue-600"><%= link_to payment.user.full_name, admin_user_path(payment.user) %></div>
+    </td>
+  <% end %>
+
+  <td class="px-6 py-4 whitespace-nowrap">
+    <div class="text-sm font-medium text-gray-900"><%= payer_name %></div>
+  </td>
+
+  <td class="px-6 py-4 whitespace-nowrap">
+    <div class="text-sm text-gray-900"><%= amount %></div>
+  </td>
+
+  <td class="px-6 py-4 whitespace-nowrap">
+    <div class="text-sm text-gray-900"><%= payment.created_at.to_fs(:long) %></div>
+  </td>
+
+  <td class="px-6 py-4 whitespace-nowrap">
+    <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full <%= status_color %>">
+      <%= t("views.payments.index.payment_status.#{payment.last_payment_status.kind}") %>
+    </span>
+  </td>
+</tr>

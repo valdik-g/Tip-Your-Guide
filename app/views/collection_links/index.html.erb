@@ -1,0 +1,38 @@
+<div class="w-full bg-white rounded-lg shadow-sm overflow-hidden">
+  <div class="px-4 py-5 sm:px-6 border rounded-t-lg border-gray-200">
+    <h3 class="text-lg font-medium leading-6 text-gray-900"><%= t("collection_links.index.title") %></h3>
+    <p class="mt-1 max-w-2xl text-sm text-gray-500"><%= t("collection_links.index.subtitle") %></p>
+  </div>
+
+  <% if @collections.blank? %>
+    <%= render "empty_link" %>
+  <% elsif @collections.size == 1 %>
+    <% collection = @collections.first %>
+    <div class="space-y-8 p-4">
+      <%= render partial: "collection_links/links_list", locals: {collection: collection} %>
+    </div>
+  <% else %>
+    <div data-controller="tabs" class="p-4">
+      <div class="flex gap-2 border-b mb-4 overflow-x-auto scrollbar-hide">
+        <% @collections.each_with_index do |collection, index| %>
+          <button
+            data-action="tabs#change"
+            data-tabs-target="tab"
+            data-tabs-id="collection-<%= collection.id %>"
+            class="px-4 py-2 text-sm whitespace-nowrap transition-colors duration-150 <%= index.zero? ? "border-b-2 border-blue-500 font-medium text-gray-900" : "text-gray-500" %>">
+            <%= collection.title.truncate(30) %>
+          </button>
+        <% end %>
+      </div>
+
+      <% @collections.each_with_index do |collection, index| %>
+        <div
+          data-tabs-target="panel"
+          data-tabs-id="collection-<%= collection.id %>"
+          class="<%= "hidden" unless index.zero? %>">
+          <%= render partial: "collection_links/links_list", locals: {collection: collection} %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
