@@ -15,9 +15,21 @@
       </span>
     </div>
 
-    <div class="prose max-w-none">
+    <div class="prose max-w-none break-all">
       <%= @blog_post.content.html_safe %>
     </div>
+
+    <% if @blog_post.blog_post_premium.present? %>
+      <% if current_user&.has_active_subscription? %> 
+        <div class="prose max-w-none break-all">
+          <%= @blog_post.blog_post_premium&.premium_content.html_safe %>
+        </div>
+      <% else %>
+        <%= render SubscriptionTeaser::TeaserComponent.new(
+          title: @blog_post.blog_post_premium.premium_title,
+        ) %>
+      <% end %>
+    <% end %>
 
     <div class="mt-8 pt-8 border-t">
       <h2 class="text-2xl font-bold mb-4"><%= t("blog.share_post") %></h2>

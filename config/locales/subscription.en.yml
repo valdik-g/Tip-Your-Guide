@@ -1,0 +1,23 @@
+en:
+  subscription:
+    subscribe: "Subscribe"
+    cancel: "Cancel subscription"
+    renew: "Renew subscription"
+    active_until: "Active until %{date}"
+    will_cancel_at: "Will be canceled on %{date}"
+    no_payment_after: "No further charges after this date."
+    next_charge: "Next charge: %{date}"
+    teaser:
+      title: "Premium content"
+      description: "Subscribe to see the full content with detailed analysis."
+      login_to_subscribe: "Log in to subscribe"
+      headline: "One subscription for every post"
+      price: "7 euros for exclusive content"
+      blurred_hint: "Unlock full access"
+    flash:
+      success: "Thanks for subscribing!"
+      canceled: "Your subscription will be canceled at the end of the period."
+      renewed: "Subscription renewed!"
+      no_active_subscription: "You dont have an active subscription"
+      payment_canceled: "Payment canceled"
+      error: "Something went wrong. Please try again."

@@ -1,4 +1,6 @@
 class Home::FormComponent < ApplicationComponent
+  include ButtonHelper
+
   attr_reader :guides, :total_users
 
   def initialize(guides:, total_users:)
@@ -29,7 +31,7 @@ class Home::FormComponent < ApplicationComponent
   end
 
   def submit_button_class
-    "lg:inline-flex items-center justify-center px-5 py-2.5 text-base transition-all duration-200 hover:bg-black focus:bg-indigo-800 font-semibold text-white bg-indigo-600 rounded-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:bg-gray-400 cursor-pointer"
+    button_classes(:primary)
   end
 
   private
