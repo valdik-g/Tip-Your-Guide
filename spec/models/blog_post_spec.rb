@@ -75,11 +75,6 @@ RSpec.describe BlogPost, type: :model do
   describe 'updating blog_post_premium via nested attributes' do
     let(:blog_post) { create(:blog_post, :with_premium) }
 
-    before do
-      # Убедимся что premium создан
-      blog_post.reload
-    end
-
     context 'when premium attributes are removed' do
       it 'destroys the blog_post_premium when _destroy flag is set' do
         premium_id = blog_post.blog_post_premium.id
