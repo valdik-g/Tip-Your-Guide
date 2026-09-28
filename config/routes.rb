@@ -28,6 +28,12 @@ Rails.application.routes.draw do
   get "privacy" => "home#privacy_policy", :as => :privacy
   get "up" => "rails/health#show", :as => :rails_health_check
 
+  resource :subscription, only: [:create, :destroy] do
+    get :success
+    get :cancel
+    get :update_payment_method
+  end
+
   resource :session
   resources :passwords, param: :token
   resources :waitlists, only: [:create]

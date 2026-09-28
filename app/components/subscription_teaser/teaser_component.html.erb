@@ -1,11 +1,11 @@
 <div class="relative mb-8 overflow-hidden w-full max-w-full px-2" style="max-height: 200px;">
-  <div style="filter: blur(4px); opacity: 0.6;" 
+  <div style="filter: blur(4px); opacity: 0.6;"
        class="text-gray-600 leading-relaxed px-4 py-8 break-all max-w-full overflow-hidden">
     <p><%= blurred_text %></p>
   </div>
 
   <div class="absolute inset-0 flex items-center justify-center px-2">
-    <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 text-center 
+    <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 text-center
                break-words bg-white/80 py-2 px-3 rounded w-full max-w-full">
       <%= title %>
     </h3>
@@ -13,10 +13,10 @@
 </div>
 
 <div class="subscription-teaser bg-blue-50 p-4 sm:p-6 md:p-8 w-full max-w-full">
-  <div class="flex flex-col sm:flex-row 
+  <div class="flex flex-col sm:flex-row
               items-center sm:items-center gap-4 sm:gap-6" style="justify-content: space-between;">
     <div class="min-w-0 text-center sm:text-left">
-      <p class="text-base sm:text-lg md:text-xl font-semibold text-gray-900 
+      <p class="text-base sm:text-lg md:text-xl font-semibold text-gray-900
                 break-words hyphens-auto">
         <%= t('subscription.teaser.headline') %>
       </p>
@@ -26,24 +26,17 @@
       <p class="text-sm text-gray-600 break-words text-center sm:text-right">
         <%= t('subscription.teaser.price') %>
       </p>
-      
+
       <% if helpers.current_user %>
-        <%= button_to t('subscription.subscribe'),
+        <%= button_to t(cta_label_key),
               subscription_path,
               method: :post,
-              class: "w-full sm:w-auto inline-flex items-center justify-center 
-                      px-6 py-2.5 text-base font-semibold text-white bg-indigo-600 
-                      rounded-lg transition-all duration-200 hover:bg-black 
-                      focus:outline-none focus:ring-2 focus:ring-indigo-500 
-                      focus:ring-offset-2 cursor-pointer whitespace-normal break-words" %>
+              data: {turbo: false},
+              class: helpers.cta_classes %>
       <% else %>
         <%= link_to t('subscription.teaser.login_to_subscribe'),
               new_session_path,
-              class: "w-full sm:w-auto inline-flex items-center justify-center 
-                      px-6 py-2.5 text-base font-semibold text-white bg-indigo-600 
-                      rounded-lg transition-all duration-200 hover:bg-black 
-                      focus:outline-none focus:ring-2 focus:ring-indigo-500 
-                      focus:ring-offset-2 whitespace-normal break-words" %>
+              class: helpers.cta_classes(type: :link) %>
       <% end %>
     </div>
   </div>

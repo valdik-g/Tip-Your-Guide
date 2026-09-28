@@ -27,6 +27,7 @@
       <% else %>
         <%= render SubscriptionTeaser::TeaserComponent.new(
           title: @blog_post.blog_post_premium.premium_title,
+          subscription: current_user&.subscription
         ) %>
       <% end %>
     <% end %>

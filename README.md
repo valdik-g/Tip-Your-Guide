@@ -126,3 +126,26 @@ the curator's back-office dashboard.
 
 The result boots, seeds and passes its tests. If something does not work on a
 clean clone, that is a bug on our side — say so and we will fix it.
+
+
+---
+
+## How to set up Stripe for Blog Subscriptions
+
+1. Go to: https://dashboard.stripe.com
+2. Sign in/Sign up
+3. Go to test mode
+4. Go to "Product Catalog" (left menu)
+5. Click on "Create Product"
+6. Fill Name, Set pricing as recuring, set amount to 7 euros, billing period as: monthly
+7. Go to "Product Catalog" and click on your product
+8. In price menu click on "...", and "Copy price ID"
+9. Add it to your env/env file as SUBSCRIPTION_STRIPE_PRICE_ID
+10. Go to "Setting->Billing->Subscriptions and emails"
+11. Click "Manage" in "Card Payment" in "Manage Failed Payments"
+12. Set Smart Retries to "Retry up to 8 times within 1 week"
+13. Click on "Developers"
+14. Copy Secret key
+15. Save it to your env as STRIPE_SECRET_KEY=(only for local development)
+16. To check stripe webhooks localy install stripe-cli and use: stripe listen --forward-to localhost:3000/stripe-webhooks
+17. You will see a webhook signing secret key, copy it and save it to your env as STRIPE_WEBHOOK_SIGNING_SECRET

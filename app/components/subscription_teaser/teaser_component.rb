@@ -1,12 +1,17 @@
 module SubscriptionTeaser
   class TeaserComponent < ViewComponent::Base
-    def initialize(title:)
+    def initialize(title:, subscription: nil)
       @title = title
+      @subscription = subscription
+    end
+
+    def cta_label_key
+      subscription ? "subscription.renew" : "subscription.subscribe"
     end
 
     private
 
-    attr_reader :title
+    attr_reader :title, :subscription
 
     def blurred_text
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " \

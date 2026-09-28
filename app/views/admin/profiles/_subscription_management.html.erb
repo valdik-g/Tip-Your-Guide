@@ -1,0 +1,101 @@
+<%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+
+<div class="mt-10">
+  <div class="mb-4">
+    <label class="block text-lg font-semibold text-gray-700 mb-1">
+      <%= t('subscription.management') %>
+    </label>
+  </div>
+
+  <div class="p-6 bg-gray-50 border border-gray-200 rounded-lg">
+    <% if @subscription.present? %>
+      <div class="space-y-3">
+        <div>
+          <span class="text-sm text-gray-500">
+            <%= t('subscription.status') %>:
+          </span>
+          <% status_class = case @subscription.status
+              when 'active' then 'bg-green-100 text-green-800'
+              when 'past_due' then 'bg-yellow-100 text-yellow-800'
+              when 'canceled' then 'bg-red-100 text-red-800'
+              when 'incomplete' then 'bg-blue-100 text-blue-800'
+              else 'bg-gray-100 text-gray-800'
+              end %>
+          <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold <%= status_class %> ml-2">
+            <%= @subscription.status.humanize %>
+          </span>
+        </div>
+
+        <% if @subscription.current_period_end.present? and !@subscription.cancel_at_period_end %>
+          <div class="text-sm text-gray-700">
+            <strong>
+              <%= t('subscription.next_charge', date: l(@subscription.current_period_end, format: :long)) %>
+            </strong>
+          </div>
+        <% end %>
+
+        <% if @subscription.ends_at %>
+          <div class="text-sm text-gray-500">
+            <%= t('subscription.active_until', date: l(@subscription.ends_at, format: :long)) %>
+          </div>
+        <% end %>
+
+        <% if @subscription.past_due? %>
+          <div class="p-3 bg-red-50 border border-red-200 rounded-md text-sm text-red-800">
+            <%= t('subscription.payment_could_not_charged') %>
+            <% if @subscription.days_until_access_loss %>
+             <%= t('subscription.will_lose_access', days: @subscription.days_until_access_loss) %>
+            <% end %>
+          </div>
+          
+          <%= button_to t('subscription.update_card'),
+                update_payment_method_subscription_path,
+                method: :get,
+                data: { turbo: false },
+                class: cta_classes %>
+        <% elsif @subscription.will_cancel? %>
+          <div class="p-3 bg-yellow-50 border border-yellow-200 rounded-md text-sm text-yellow-800">
+            <%= t('subscription.will_cancel_at', date: l(@subscription.ends_at, format: :long)) %>
+          </div>
+          <div class="text-xs text-gray-500 text-center">
+            <%= t('subscription.no_payment_after') %>
+          </div>
+
+        <% elsif @subscription.incomplete? %>
+          <div class="p-3 bg-blue-50 border border-blue-200 rounded-md text-sm text-blue-800">
+            <%= t('subscription.payment_incomplete') %>
+          </div>
+
+        <% elsif @subscription.canceled? %>
+          <% if @subscription.current_period_end.present? %>
+            <div class="text-sm text-gray-500">
+              <%= t('subscription.ended_at', date: l(@subscription.current_period_end, format: :long)) %>
+            </div>
+          <% end %>
+          <%= button_to t('subscription.renew'),
+                subscription_path,
+                method: :post,
+                data: { turbo: false },
+                class: cta_classes %>
+
+        <% elsif @subscription.active? %>
+          <%= button_to t('subscription.cancel'),
+                subscription_path,
+                method: :delete,
+                data: { turbo_confirm: t('subscription.no_payment_after') },
+                class: "px-4 py-2 text-base font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700
+                        transition-colors border-none cursor-pointer" %>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-sm text-gray-500 mb-4">
+        <%= t('subscription.flash.no_active_subscription') %>
+      </p>
+      <%= button_to t('subscription.subscribe'),
+              subscription_path,
+              method: :post,
+              data: { turbo: false },
+              class: cta_classes %>
+    <% end %>
+  </div>
+</div>
