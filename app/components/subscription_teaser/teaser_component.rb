@@ -9,6 +9,14 @@ module SubscriptionTeaser
       subscription ? "subscription.renew" : "subscription.subscribe"
     end
 
+    def readers_count
+      Subscription.count
+    end
+
+    def readers_count_label
+      t("subscription.teaser.readers_count", count: readers_count)
+    end
+
     private
 
     attr_reader :title, :subscription

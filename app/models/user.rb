@@ -26,6 +26,8 @@ class User < ApplicationRecord
 
   has_one :subscription, dependent: :destroy
 
+  has_many :blog_posts, foreign_key: :author_id, dependent: :nullify
+
   before_validation :generate_slug, on: :create
 
   validates :email, presence: true, uniqueness: true

@@ -56,6 +56,7 @@ Rails.application.routes.draw do
   get "/blog/:locale", to: "blog_posts#index", as: :blog
   get "/blog/:locale/:slug", to: "blog_posts#show", as: :blog_post
   get "/blog", to: redirect { |path_params, req| "/blog/#{req.params[:locale] || I18n.locale}" }
+  get "/authors/:slug", to: "authors#show", as: :author
 
   namespace :collections do
     resources :purchases, only: [] do
@@ -73,6 +74,4 @@ Rails.application.routes.draw do
 
   get "/c/:id", to: "collection_links#show", as: :short_collection_link
   get "/u/:id", to: "guides#show", as: :short_guide
-
-  mount StripeEvent::Engine, at: "/stripe-webhooks"
 end

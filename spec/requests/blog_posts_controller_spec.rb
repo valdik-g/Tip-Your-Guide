@@ -42,6 +42,14 @@ RSpec.describe "Blog posts premium content", type: :request do
         expect(response.body).to include("Premium Content")
         expect(response.body).not_to include(I18n.t("subscription.teaser.headline"))
       end
+
+      it "renders the premium title as a body-sized heading" do
+        read_post
+
+        expect(response.body).to include(
+          %(<h2 class="my-6 text-lg font-normal leading-relaxed">Premium Title</h2>)
+        )
+      end
     end
 
     context "when the payment failed but the grace period has not run out" do
@@ -92,6 +100,30 @@ RSpec.describe "Blog posts premium content", type: :request do
         expect(response.body).to include(I18n.t("subscription.teaser.headline"))
         expect(response.body).to include(I18n.t("subscription.teaser.login_to_subscribe"))
         expect(response.body).not_to include(I18n.t("subscription.subscribe"))
+      end
+    end
+
+    context "when the post is linked to a user" do
+      let(:author) { create(:user, full_name: "John Doe") }
+      let(:blog_post) { create(:blog_post, author: author, author_name: "Johnny") }
+
+      it "links the author name to the author page" do
+        read_post
+
+        expect(response.body).to include(%(href="#{author_path(author)}"))
+        expect(response.body).to include("John Doe")
+        expect(response.body).not_to include("Johnny")
+      end
+    end
+
+    context "when the post has no matching user" do
+      let(:blog_post) { create(:blog_post, author_name: "Guest Writer") }
+
+      it "shows the stored name without a link" do
+        read_post
+
+        expect(response.body).to include("Guest Writer")
+        expect(response.body).not_to include(%(href="/authors/))
       end
     end
   end

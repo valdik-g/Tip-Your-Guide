@@ -35,7 +35,7 @@ module Admin
     def blog_post_params
       params.require(:blog_post).permit(
         :title, :slug, :locale, :content, :meta_description, :meta_keywords, :published,
-        :published_at, :featured_image, :author_name,
+        :published_at, :featured_image, :author_id, :author_name,
         blog_post_premium_attributes: [:id, :premium_title, :premium_content, :_destroy]
       )
     end

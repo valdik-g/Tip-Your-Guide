@@ -19,6 +19,7 @@ class BlogPostDashboard < Administrate::BaseDashboard
     published_at: Field::DateTime,
     featured_image: Field::String,
     author_name: Field::String,
+    author: AuthorField,
     blog_post_premium: Field::HasOne,
     created_at: Field::DateTime,
     updated_at: Field::DateTime
@@ -52,6 +53,7 @@ class BlogPostDashboard < Administrate::BaseDashboard
     published_at
     featured_image
     author_name
+    author
     blog_post_premium
     created_at
     updated_at
@@ -70,7 +72,7 @@ class BlogPostDashboard < Administrate::BaseDashboard
     published
     published_at
     featured_image
-    author_name
+    author
     blog_post_premium
   ].freeze
 
@@ -92,6 +94,12 @@ class BlogPostDashboard < Administrate::BaseDashboard
   # def display_resource(role)
   #   "Role ##{role.id}"
   # end
+
+  # The author field renders both the user dropdown (`author_id`) and the
+  # free-text fallback name, so `author_name` has to be permitted as well.
+  def permitted_attributes(action = nil)
+    super + [:author_name]
+  end
 
   def display_resource(blog_post)
     blog_post.title.presence || "BlogPost ##{blog_post.id}"

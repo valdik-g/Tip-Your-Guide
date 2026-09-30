@@ -15,6 +15,14 @@ RSpec.describe SubscriptionTeaser::TeaserComponent, type: :component do
     it "offers a subscription" do
       expect(render_teaser).to have_button(I18n.t("subscription.subscribe"))
     end
+
+    it "shows how many readers have joined" do
+      create_list(:subscription, 3)
+
+      expect(render_teaser).to have_text(
+        I18n.t("subscription.teaser.readers_count", count: Subscription.count)
+      )
+    end
   end
 
   context "when the cancelled subscription is past its period" do

@@ -134,4 +134,71 @@ RSpec.describe BlogPost, type: :model do
       expect { blog_post.destroy }.to change { BlogPostPremium.count }.by(-1)
     end
   end
+
+  describe "#author_display_name" do
+    context "when the post is linked to a user" do
+      it "follows the current name of that user" do
+        blog_post = create(:blog_post, :with_author, author_name: "Johnny")
+        blog_post.author.update!(full_name: "John Smith")
+
+        expect(blog_post.reload.author_display_name).to eq("John Smith")
+      end
+    end
+
+    context "when the post is not linked to a user" do
+      it "falls back to the stored name" do
+        blog_post = create(:blog_post, author_name: "Guest Writer")
+
+        expect(blog_post.author_display_name).to eq("Guest Writer")
+      end
+    end
+
+    context "when the post is not linked and has no stored name" do
+      it "is blank" do
+        blog_post = create(:blog_post, author_name: nil)
+
+        expect(blog_post.author_display_name).to be_nil
+      end
+    end
+  end
+
+  describe "the author association" do
+    it "is optional" do
+      expect(create(:blog_post, author: nil)).to be_persisted
+    end
+
+    it "is cleared when the user is destroyed" do
+      blog_post = create(:blog_post, :with_author)
+
+      expect { blog_post.author.destroy! }.to change { blog_post.reload.author_id }.from(be_present).to(nil)
+    end
+  end
+
+  describe "sync_author_name" do
+    context "when the author is linked to a user" do
+      it "keeps author_name in sync with the user name" do
+        blog_post = create(:blog_post, :with_author, author_name: "Stale")
+        blog_post.author.update!(full_name: "Jane Doe")
+
+        expect { blog_post.valid? }.to change { blog_post.author_name }.to("Jane Doe")
+      end
+
+      it "overwrites a manually typed name" do
+        blog_post = build(:blog_post, author_name: "Typed Name")
+
+        blog_post.author = create(:user, full_name: "Linked Author")
+
+        expect { blog_post.valid? }.to change { blog_post.author_name }.to("Linked Author")
+      end
+    end
+
+    context "when no user is linked" do
+      it "keeps the typed author_name untouched" do
+        blog_post = build(:blog_post, author_name: "Guest Writer")
+
+        expect(blog_post).to be_valid
+        expect(blog_post.author_name).to eq("Guest Writer")
+      end
+    end
+  end
 end

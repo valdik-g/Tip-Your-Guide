@@ -2,3 +2,6 @@ en:
   administrate:
     actions:
       add_another_resource: "Add Another %{name}"
+    fields:
+      author_field:
+        other_author: "Other author (not a user)"

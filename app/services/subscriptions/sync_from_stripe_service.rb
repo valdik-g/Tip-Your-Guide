@@ -52,11 +52,13 @@ module Subscriptions
         return subscription
       end
 
+      status = map_status(stripe_subscription)
+
       subscription.assign_attributes(
         stripe_subscription_id: stripe_subscription[:id],
         stripe_customer_id: customer_id(stripe_subscription),
-        status: map_status(stripe_subscription),
-        current_period_end: PeriodEnd.call(stripe_subscription),
+        status: status,
+        current_period_end: period_end(stripe_subscription, status),
         cancel_at_period_end: stripe_subscription[:cancel_at_period_end] || false
       )
 
@@ -74,6 +76,16 @@ module Subscriptions
 
       Rails.logger.warn("[SUBSCRIPTION SYNC] Unknown Stripe status #{stripe_status.inspect}")
       UNKNOWN_STATUS
+    end
+
+    def period_end(stripe_subscription, status)
+      period_end = PeriodEnd.call(stripe_subscription)
+      return period_end unless status == "canceled"
+
+      ended_at = EndedAt.call(stripe_subscription)
+      return period_end if ended_at.nil? || period_end.nil?
+
+      [period_end, ended_at].min
     end
 
     def customer_id(stripe_subscription)

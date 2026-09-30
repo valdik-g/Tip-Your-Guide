@@ -26,7 +26,8 @@
           </span>
         </div>
 
-        <% if @subscription.current_period_end.present? and !@subscription.cancel_at_period_end %>
+        <% if @subscription.active? && @subscription.current_period_end.present? && 
+              !@subscription.cancel_at_period_end %>
           <div class="text-sm text-gray-700">
             <strong>
               <%= t('subscription.next_charge', date: l(@subscription.current_period_end, format: :long)) %>
@@ -34,13 +35,7 @@
           </div>
         <% end %>
 
-        <% if @subscription.ends_at %>
-          <div class="text-sm text-gray-500">
-            <%= t('subscription.active_until', date: l(@subscription.ends_at, format: :long)) %>
-          </div>
-        <% end %>
-
-        <% if @subscription.past_due? %>
+        <% if @subscription.past_due? && @subscription.accessible? %>
           <div class="p-3 bg-red-50 border border-red-200 rounded-md text-sm text-red-800">
             <%= t('subscription.payment_could_not_charged') %>
             <% if @subscription.days_until_access_loss %>
@@ -66,10 +61,10 @@
             <%= t('subscription.payment_incomplete') %>
           </div>
 
-        <% elsif @subscription.canceled? %>
-          <% if @subscription.current_period_end.present? %>
+        <% elsif @subscription.canceled? || @subscription.past_due? %>
+          <% if @subscription.ended_on %>
             <div class="text-sm text-gray-500">
-              <%= t('subscription.ended_at', date: l(@subscription.current_period_end, format: :long)) %>
+              <%= t('subscription.ended_at', date: l(@subscription.ended_on, format: :long)) %>
             </div>
           <% end %>
           <%= button_to t('subscription.renew'),
@@ -82,7 +77,7 @@
           <%= button_to t('subscription.cancel'),
                 subscription_path,
                 method: :delete,
-                data: { turbo_confirm: t('subscription.no_payment_after') },
+                data: { turbo_confirm: t('subscription.cancel_confirmation') },
                 class: "px-4 py-2 text-base font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700
                         transition-colors border-none cursor-pointer" %>
         <% end %>

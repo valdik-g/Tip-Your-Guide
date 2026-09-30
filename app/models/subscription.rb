@@ -43,4 +43,10 @@ class Subscription < ApplicationRecord
   def ends_at
     will_cancel? ? current_period_end : nil
   end
+
+  def ended_on
+    return current_period_end unless canceled?
+
+    current_period_end&.past? ? current_period_end : nil
+  end
 end

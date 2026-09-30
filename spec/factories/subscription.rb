@@ -28,6 +28,11 @@ FactoryBot.define do
       current_period_end { 1.day.ago }
     end
 
+    trait :canceled_with_time_left do
+      status { "canceled" }
+      current_period_end { 1.week.from_now }
+    end
+
     trait :incomplete do
       status { 'incomplete' }
     end

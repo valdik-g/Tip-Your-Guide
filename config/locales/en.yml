@@ -147,6 +147,8 @@ en:
       - Exclusive
       for_business_link: "For Business"
       for_guides_link: "For Solo Guides"
+      sign_in: Sign in
+      edit_profile: Edit profile
     business_section:
       title: "For Tour Companies & Agencies"
       subtitle: "Manage guides, boost revenue, and strengthen your brand"
@@ -387,6 +389,10 @@ en:
       tourists: "For tourists"
       tips: "Tips"
       trends: "Trends"
+  authors:
+    show:
+      articles: "Articles"
+      no_articles: "No articles yet"
   helpers:
     label:
       user:
@@ -401,8 +407,13 @@ en:
     field_hints:
       user:
         interests: 'For example: history, cooking, nature'
+      blog_post:
+        author: "Pick a user to link the author page, or choose “Other author” to type a name that is not in the user list."
       collection:
         collection_price: "Price of the collection in cents. For example, 1000 = $10.00. Only applicable to paid collections!"
+    placeholders:
+      blog_post_premium:
+        premium_title: "What is your premium part about?"
   admin:
     authorization:
       denied: "Access denied."

@@ -10,10 +10,12 @@ class BlogPostPremiumDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     blog_post: Field::BelongsTo,
-    premium_title: Field::String,
+    premium_title: Field::String.with_options(
+      placeholder: I18n.t("administrate.placeholders.blog_post_premium.premium_title")
+    ),
     premium_content: Field::Text,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES

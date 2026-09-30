@@ -11,7 +11,13 @@
         <%= @blog_post.published_at&.strftime("%d.%m.%Y") %>
       </span>
       <span>
-        <%= @blog_post.author_name %>
+        <% if @blog_post.author %>
+          <%= link_to @blog_post.author_display_name,
+                author_path(@blog_post.author),
+                class: "hover:underline" %>
+        <% else %>
+          <%= @blog_post.author_display_name %>
+        <% end %>
       </span>
     </div>
 
@@ -20,7 +26,8 @@
     </div>
 
     <% if @blog_post.blog_post_premium.present? %>
-      <% if current_user&.has_active_subscription? %> 
+      <% if current_user&.has_active_subscription? %>
+        <h2 class="my-6 text-lg font-normal leading-relaxed"><%= @blog_post.blog_post_premium.premium_title %></h2>
         <div class="prose max-w-none break-all">
           <%= @blog_post.blog_post_premium&.premium_content.html_safe %>
         </div>

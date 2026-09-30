@@ -1,0 +1,26 @@
+<div class="field-unit__label">
+  <%= f.label field.attribute, for: "#{f.object_name}_#{field.permitted_attribute}" %>
+</div>
+<div class="field-unit__field" data-author-field data-other-value="<%= field.other_author_value %>">
+  <%= f.select(field.permitted_attribute,
+               options_for_select(field.select_options, field.selected_option),
+               {},
+               id: "#{f.object_name}_#{field.permitted_attribute}") %>
+
+  <div data-author-field-other-input style="<%= "display: none" unless field.other_author_selected? %>">
+    <%= f.label :author_name, for: "#{f.object_name}_author_name" %>
+    <%= f.text_field :author_name %>
+  </div>
+  <%= javascript_tag do %>
+    (function () {
+      var container = document.currentScript.parentElement;
+      var select = container.querySelector("select");
+      var otherInput = container.querySelector("[data-author-field-other-input]");
+      var toggle = function () {
+        otherInput.style.display = select.value === container.getAttribute("data-other-value") ? "block" : "none";
+      };
+      select.addEventListener("change", toggle);
+      toggle();
+    })();
+  <% end %>
+</div>

@@ -144,7 +144,7 @@ print_step_end
 # precise, reproducible detail. How you split them is your decision.
 print_step_start("Creating articles...")
 
-def article(user:, title:, slug:, locale:, description:, keywords:, body:)
+def article(user:, title:, slug:, locale:, description:, keywords:, body:, premium_title: nil, premium_content: nil)
   BlogPost.create!(
     title: title,
     slug: slug,
@@ -154,7 +154,11 @@ def article(user:, title:, slug:, locale:, description:, keywords:, body:)
     published: true,
     published_at: rand(1..60).days.ago,
     meta_description: description,
-    meta_keywords: keywords
+    meta_keywords: keywords,
+    blog_post_premium_attributes: {
+      premium_title: premium_title,
+      premium_content: premium_content
+    }
   )
 end
 
@@ -183,7 +187,9 @@ article(
 
     Press two fingers in. If the dimple fills back halfway and stops, you are
     ready. If it springs all the way back, wait.
-
+  MD
+  premium_title: "Full recepie with exact measurements",
+  premium_content: <<~MD
     ## The numbers
 
     For one 30×40cm tin:
@@ -215,7 +221,7 @@ article(
   locale: :en,
   description: "The economics behind Paris closing days, and where the industry eats instead.",
   keywords: "paris, monday, restaurants, industry, dining",
-  body: <<~MD
+  body: <<~MD,
     Ask a cook in Paris what day they eat well and they will not say Saturday.
 
     ## Why Monday is closed
@@ -344,6 +350,17 @@ print_step_end
 # == Waitlist ==
 print_step_start("Creating waitlist entries...")
 Waitlist.create!(email: "wants-in@example.com", city: "Lisbon", country: "PT")
+print_step_end
+
+# == Subscriptions ==
+print_step_start("Creating active subscription for admin...")
+Subscription.create!(
+  user: admin,
+  status: 'active', 
+  cancel_at_period_end: false, 
+  current_period_end: DateTime.now + 1.month,
+  stripe_subscription_id: 'sandbox-stripe-id',
+)
 print_step_end
 
 print_step_end("Finished seeding the database!", color: GREEN)

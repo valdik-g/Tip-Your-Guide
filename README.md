@@ -147,5 +147,5 @@ clean clone, that is a bug on our side — say so and we will fix it.
 13. Click on "Developers"
 14. Copy Secret key
 15. Save it to your env as STRIPE_SECRET_KEY=(only for local development)
-16. To check stripe webhooks localy install stripe-cli and use: stripe listen --forward-to localhost:3000/stripe-webhooks
+16. To check stripe webhooks localy install stripe-cli and use: stripe listen --forward-to localhost:3000/api/stripe/webhooks
 17. You will see a webhook signing secret key, copy it and save it to your env as STRIPE_WEBHOOK_SIGNING_SECRET

@@ -67,6 +67,33 @@ RSpec.describe Subscription, type: :model do
     end
   end
 
+  describe "#ended_on" do
+    it "returns the period end for a canceled subscription that already ended" do
+      subscription = build(:subscription, :canceled_expired)
+      expect(subscription.ended_on).to eq(subscription.current_period_end)
+    end
+
+    it "returns nil when a canceled subscription carries a period end in the future" do
+      subscription = build(:subscription, :canceled_with_time_left)
+      expect(subscription.ended_on).to be_nil
+    end
+
+    it "returns nil when a canceled subscription has no period end at all" do
+      subscription = build(:subscription, :canceled_expired, current_period_end: nil)
+      expect(subscription.ended_on).to be_nil
+    end
+
+    it "returns the period end for a past_due subscription inside the grace period" do
+      subscription = build(:subscription, :past_due)
+      expect(subscription.ended_on).to eq(subscription.current_period_end)
+    end
+
+    it "returns the next renewal for an active subscription" do
+      subscription = build(:subscription)
+      expect(subscription.ended_on).to eq(subscription.current_period_end)
+    end
+  end
+
   describe '#renewable?' do
     it 'returns false while the subscription is active' do
       subscription = build(:subscription)

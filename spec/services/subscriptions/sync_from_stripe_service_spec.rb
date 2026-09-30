@@ -129,6 +129,107 @@ RSpec.describe Subscriptions::SyncFromStripeService do
         it "maps canceled status correctly" do
           expect(described_class.new(stripe_subscription_id: "sub_test").call.status).to eq("canceled")
         end
+
+        context "when the paid period still has time left" do
+          let(:stripe_ended_at) { 1.minute.ago }
+
+          let(:stripe_subscription) do
+            Stripe::Util.convert_to_stripe_object({
+              id: "sub_test",
+              object: "subscription",
+              customer: stripe_customer,
+              status: stripe_status,
+              cancel_at_period_end: false,
+              ended_at: stripe_ended_at.to_i,
+              canceled_at: stripe_ended_at.to_i,
+              metadata: stripe_metadata,
+              items: {
+                object: "list",
+                data: [
+                  {id: "si_test", object: "subscription_item", current_period_end: stripe_period_end.to_i}
+                ]
+              }
+            })
+          end
+
+          it "ends the period when the subscription actually ended" do
+            result = described_class.new(stripe_subscription_id: "sub_test").call
+
+            expect(result.current_period_end).to be_within(1.second).of(stripe_ended_at)
+          end
+
+          it "does not report a period ending in the future" do
+            result = described_class.new(stripe_subscription_id: "sub_test").call
+
+            expect(result.current_period_end).to be_past
+          end
+        end
+
+        context "when the API version has no ended_at" do
+          let(:stripe_canceled_at) { 2.days.ago }
+
+          let(:stripe_subscription) do
+            Stripe::Util.convert_to_stripe_object({
+              id: "sub_test",
+              object: "subscription",
+              customer: stripe_customer,
+              status: stripe_status,
+              cancel_at_period_end: false,
+              canceled_at: stripe_canceled_at.to_i,
+              metadata: stripe_metadata,
+              items: {
+                object: "list",
+                data: [
+                  {id: "si_test", object: "subscription_item", current_period_end: stripe_period_end.to_i}
+                ]
+              }
+            })
+          end
+
+          it "falls back to canceled_at" do
+            result = described_class.new(stripe_subscription_id: "sub_test").call
+
+            expect(result.current_period_end).to be_within(1.second).of(stripe_canceled_at)
+          end
+        end
+
+        context "when the subscription ended after the paid period" do
+          let(:stripe_period_end) { 3.days.ago }
+          let(:stripe_ended_at) { 1.day.ago }
+
+          let(:stripe_subscription) do
+            Stripe::Util.convert_to_stripe_object({
+              id: "sub_test",
+              object: "subscription",
+              customer: stripe_customer,
+              status: stripe_status,
+              cancel_at_period_end: false,
+              ended_at: stripe_ended_at.to_i,
+              canceled_at: stripe_ended_at.to_i,
+              metadata: stripe_metadata,
+              items: {
+                object: "list",
+                data: [
+                  {id: "si_test", object: "subscription_item", current_period_end: stripe_period_end.to_i}
+                ]
+              }
+            })
+          end
+
+          it "keeps the earlier of the two dates" do
+            result = described_class.new(stripe_subscription_id: "sub_test").call
+
+            expect(result.current_period_end).to be_within(1.second).of(stripe_period_end)
+          end
+        end
+
+        context "when the API reports no end at all" do
+          it "leaves the period end alone instead of dropping it" do
+            result = described_class.new(stripe_subscription_id: "sub_test").call
+
+            expect(result.current_period_end).to be_within(1.second).of(stripe_period_end)
+          end
+        end
       end
 
       context "when the Stripe status is unknown" do

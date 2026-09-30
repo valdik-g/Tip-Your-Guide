@@ -53,6 +53,21 @@ RSpec.describe "Admin profile subscription management", type: :request do
       end
     end
 
+    context "when a canceled subscription still carries a period end in the future" do
+      let!(:subscription) { create(:subscription, :canceled_with_time_left, user: user) }
+
+      it "does not claim the subscription ends on a future date" do
+        visit_profile
+
+        expect(response.body).not_to include(
+          I18n.t(
+            "subscription.ended_at",
+            date: I18n.l(subscription.current_period_end, format: :long)
+          )
+        )
+      end
+    end
+
     context "when the subscription is active" do
       let!(:subscription) { create(:subscription, :active, user: user) }
 

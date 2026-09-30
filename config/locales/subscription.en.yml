@@ -9,6 +9,7 @@ en:
     no_payment_after: "No further charges after this date."
     next_charge: "Next charge: %{date}"
     cancel_info: "After cancellation, you will keep access until the end of the paid period."
+    cancel_confirmation: "Are you sure you want to cancel your subscription?"
     no_active_subscription: "You do not have an active subscription"
     management: "Subscription management"
     status: "Status"
@@ -17,14 +18,11 @@ en:
     will_lose_access: Access will be closed in %{days} days.
     update_card: Update card
     teaser:
-      title: "Premium content"
-      description: "Subscribe to see the full content with detailed analysis."
       login_to_subscribe: "Log in to subscribe"
       already_subscribed: "You already have an active subscription."
-      manage: "Manage subscription"
       headline: "One subscription for every post"
       price: "7 euros for exclusive content"
-      blurred_hint: "Unlock full access"
+      readers_count: "Join over %{count} readers"
     flash:
       success: "Thanks for subscribing!"
       canceled: "Your subscription will be canceled at the end of the period."

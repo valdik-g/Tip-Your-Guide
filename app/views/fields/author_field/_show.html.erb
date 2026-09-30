@@ -1,0 +1,9 @@
+<% if field.data %>
+  <% if accessible_action?(field.data, :show) %>
+    <%= link_to field.data.full_name, [namespace, field.data] %>
+  <% else %>
+    <%= field.data.full_name %>
+  <% end %>
+<% else %>
+  <%= field.author_name %>
+<% end %>
