@@ -102,8 +102,21 @@ RSpec.describe 'Subscriptions', type: :request do
 
         delete subscription_path
 
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(edit_admin_profile_url)
         expect(flash[:notice]).to eq(I18n.t('subscription.flash.canceled'))
+      end
+    end
+
+    context 'when the cancellation fails' do
+      let!(:subscription) { create(:subscription, user: user, status: 'active') }
+
+      it 'returns to the profile with an error' do
+        allow_any_instance_of(Subscriptions::CancelService).to receive(:call).and_return(nil)
+
+        delete subscription_path
+
+        expect(response).to redirect_to(edit_admin_profile_url)
+        expect(flash[:alert]).to eq(I18n.t('subscription.flash.error'))
       end
     end
 
@@ -111,7 +124,7 @@ RSpec.describe 'Subscriptions', type: :request do
       it 'redirects with error' do
         delete subscription_path
 
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(edit_admin_profile_url)
         expect(flash[:alert]).to eq(I18n.t('subscription.flash.no_active_subscription'))
       end
     end
@@ -122,7 +135,7 @@ RSpec.describe 'Subscriptions', type: :request do
       it 'redirects with error' do
         delete subscription_path
 
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(edit_admin_profile_url)
         expect(flash[:alert]).to eq(I18n.t('subscription.flash.no_active_subscription'))
       end
     end

@@ -20,9 +20,9 @@ class SubscriptionsController < ApplicationController
     service = Subscriptions::CancelService.new(subscription: @subscription)
     
     if service.call
-      redirect_to root_path, notice: t('subscription.flash.canceled')
+      redirect_to edit_admin_profile_url, notice: t('subscription.flash.canceled')
     else
-      redirect_to root_path, alert: t('subscription.flash.error')
+      redirect_to edit_admin_profile_url, alert: t('subscription.flash.error')
     end
   end
 
@@ -56,7 +56,7 @@ class SubscriptionsController < ApplicationController
     @subscription = current_user.subscription
     
     unless @subscription&.active?
-      redirect_to root_path, alert: t('subscription.flash.no_active_subscription')
+      redirect_to edit_admin_profile_url, alert: t('subscription.flash.no_active_subscription')
     end
   end
 end

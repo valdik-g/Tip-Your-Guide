@@ -77,6 +77,25 @@ RSpec.describe "Admin profile subscription management", type: :request do
         expect(response.body).to include(I18n.t("subscription.cancel"))
         expect(response.body).not_to include(I18n.t("subscription.renew"))
       end
+
+      it "submits the cancellation so the profile page reloads" do
+        visit_profile
+
+        cancel_form = response.body[
+          %r{<form[^>]*action="#{Regexp.escape(subscription_path)}"[^>]*>.*?</form>}m
+        ]
+
+        expect(cancel_form).to include('data-turbo="false"')
+        expect(cancel_form).to include('name="_method" value="delete"')
+      end
+
+      it "asks for a confirmation in a way that survives the reload" do
+        visit_profile
+
+        expect(response.body).to include(
+          %(onclick="return confirm(&quot;#{I18n.t("subscription.cancel_confirmation")}&quot;)")
+        )
+      end
     end
 
     context "when a past_due subscription is inside the grace period" do

@@ -77,7 +77,8 @@
           <%= button_to t('subscription.cancel'),
                 subscription_path,
                 method: :delete,
-                data: { turbo_confirm: t('subscription.cancel_confirmation') },
+                data: { turbo: false },
+                onclick: "return confirm(#{t('subscription.cancel_confirmation').to_json})",
                 class: "px-4 py-2 text-base font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700
                         transition-colors border-none cursor-pointer" %>
         <% end %>
