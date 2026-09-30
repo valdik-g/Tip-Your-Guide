@@ -27,10 +27,12 @@ RSpec.describe BlogPostPremium, type: :model do
     end
 
     context 'when both fields are blank' do
-      it 'is valid (will be rejected by parent model)' do
+      it 'is invalid; BlogPost skips building the record via reject_if' do
         premium = build(:blog_post_premium, blog_post: blog_post, premium_title: nil, premium_content: nil)
-        
-        expect(premium).to be_valid
+
+        expect(premium).not_to be_valid
+        expect(premium.errors[:premium_title]).to include("can't be blank")
+        expect(premium.errors[:premium_content]).to include("can't be blank")
       end
     end
 
