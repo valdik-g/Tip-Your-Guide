@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_13_132000) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_28_021654) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -52,7 +52,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_13_132000) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "blog_post_premiums", force: :cascade do |t|
+    t.bigint "blog_post_id", null: false
+    t.datetime "created_at", null: false
+    t.text "premium_content"
+    t.string "premium_title"
+    t.datetime "updated_at", null: false
+    t.index ["blog_post_id"], name: "index_blog_post_premiums_on_blog_post_id", unique: true
+  end
+
   create_table "blog_posts", force: :cascade do |t|
+    t.bigint "author_id"
     t.string "author_name"
     t.text "content", null: false
     t.datetime "created_at", null: false
@@ -65,6 +75,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_13_132000) do
     t.string "slug", null: false
     t.string "title", null: false
     t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_blog_posts_on_author_id"
     t.index ["slug"], name: "index_blog_posts_on_slug", unique: true
   end
 
@@ -188,6 +199,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_13_132000) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.boolean "cancel_at_period_end"
+    t.datetime "created_at", null: false
+    t.datetime "current_period_end"
+    t.string "status", default: "incomplete", null: false
+    t.string "stripe_customer_id"
+    t.string "stripe_subscription_id", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["stripe_customer_id"], name: "index_subscriptions_on_stripe_customer_id"
+    t.index ["stripe_subscription_id"], name: "index_subscriptions_on_stripe_subscription_id", unique: true
+    t.index ["user_id"], name: "index_subscriptions_on_user_id", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.text "bio"
     t.string "city"
@@ -232,6 +257,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_13_132000) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "blog_post_premiums", "blog_posts"
   add_foreign_key "collection_links", "collections"
   add_foreign_key "collection_links", "users"
   add_foreign_key "collection_places", "collections"
@@ -244,5 +270,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_13_132000) do
   add_foreign_key "payments", "users"
   add_foreign_key "places", "users"
   add_foreign_key "sessions", "users"
+  add_foreign_key "subscriptions", "users"
   add_foreign_key "waitlists", "users"
 end

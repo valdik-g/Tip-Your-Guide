@@ -1,0 +1,75 @@
+<% content_for :title, "#{t("views.shared.head.title")} - #{@author.full_name}" %>
+<% content_for :og_title, "#{t("views.shared.head.title")} - #{@author.full_name}" %>
+<% if @author.bio.present? %>
+  <% content_for :meta_description, @author.bio %>
+<% end %>
+<% if @author.avatar.attached? %>
+  <% content_for :og_image, url_for(@author.avatar.variant(resize_to_limit: [512, 512]).processed) %>
+<% end %>
+
+<div class="container mx-auto px-4 py-8 max-w-3xl">
+  <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 mb-10">
+    <div class="flex-shrink-0">
+      <% if @author.avatar.attached? %>
+        <%= image_tag @author.avatar.variant(resize_to_fill: [160, 160]), class: "w-40 h-40 object-cover rounded-full", alt: @author.full_name %>
+      <% else %>
+        <%= image_tag asset_path("favicon/favicon.svg"), class: "w-40 h-40 object-cover rounded-full", alt: @author.full_name %>
+      <% end %>
+    </div>
+
+    <div class="min-w-0 text-center sm:text-left">
+      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-gray-900">
+        <%= @author.full_name %>
+      </h1>
+
+      <% if @author.city.present? || @author.country.present? %>
+        <div class="flex items-center justify-center sm:justify-start gap-1 text-gray-600 mt-2">
+          <%= render Shared::IconComponent.new("map-pin", color: "gray-600", size: 16) %>
+          <span>
+            <%= [@author.city, Country[@author.country]&.common_name].compact.join(", ") %>
+          </span>
+        </div>
+      <% end %>
+
+      <% if @author.bio.present? %>
+        <p class="mt-4 text-gray-700 break-words">
+          <%= @author.bio %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+
+  <h2 class="text-2xl font-bold mb-4">
+    <%= t("authors.show.articles") %>
+  </h2>
+
+  <% if @blog_posts.any? %>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <% @blog_posts.each do |post| %>
+        <%= link_to blog_post_path(post.locale, post.slug), class: "block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300", hreflang: post.locale do %>
+          <% if post.featured_image.present? %>
+            <%= image_tag post.featured_image, class: "w-full h-40 object-cover" %>
+          <% end %>
+
+          <div class="p-5">
+            <h3 class="text-lg font-semibold mb-2 text-gray-900">
+              <%= post.title %>
+            </h3>
+
+            <p class="text-gray-600 text-sm">
+              <%= post.meta_description %>
+            </p>
+
+            <p class="text-sm text-gray-500 mt-3">
+              <%= post.published_at&.strftime(t("blog.date_format")) %>
+            </p>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-gray-500">
+      <%= t("authors.show.no_articles") %>
+    </p>
+  <% end %>
+</div>

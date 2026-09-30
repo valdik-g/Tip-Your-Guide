@@ -1,0 +1,36 @@
+<%= f.fields_for field.attribute, field.data || field.nested_form.resource.class.new do |has_one_f| %>
+  <fieldset class="field-unit--nested">
+    <legend><%= t "helpers.label.#{f.object_name}.#{field.name}", default: field.name.titleize %></legend>
+    <% field.nested_form.attributes.each do |title, attributes| -%>
+
+      <fieldset class="<%= "field-unit--nested" if title.present? %>">
+        <% if title.present? %>
+          <legend><%= t "helpers.label.#{f.object_name}.#{title}", default: title %></legend>
+        <% end %>
+
+        <% attributes.each do |attribute| %>
+          <div class="field-unit field-unit--<%= attribute.html_class %>">
+            <%= render_field attribute, f: has_one_f %>
+          </div>
+          <% hint_key = "administrate.field_hints.#{field.name}.#{attribute.name}" %>
+          <% if I18n.exists?(hint_key) -%>
+            <div class="field-unit__hint">
+              <%= I18n.t(hint_key) %>
+            </div>
+          <% end -%>
+        <% end %>
+      </fieldset>
+    <% end -%>
+
+    <% if field.data&.persisted? %>
+      <div class="field-unit field-unit--destroy">
+        <div class="field-unit__label">
+          <%= has_one_f.label :_destroy, t("administrate.actions.destroy_nested") %>
+        </div>
+        <div class="field-unit__field">
+          <%= has_one_f.check_box :_destroy %>
+        </div>
+      </div>
+    <% end %>
+  </fieldset>
+<% end %>

@@ -1,9 +1,11 @@
 module StripeHelper
-  # Stripe is configured from ENV in this app — see config/initializers/stripe.rb
+  WEBHOOK_SIGNING_SECRET = "whsec_test_123"
+  WEBHOOK_PATH = "/api/stripe/webhooks"
+
   def stub_stripe_credentials
     stub_const("ENV", ENV.to_hash.merge(
       "STRIPE_SECRET_KEY" => "sk_test_123",
-      "STRIPE_WEBHOOK_SIGNING_SECRET" => "whsec_test_123"
+      "STRIPE_WEBHOOK_SIGNING_SECRET" => WEBHOOK_SIGNING_SECRET
     ))
 
     Stripe.api_key = "sk_test_123"
@@ -40,8 +42,29 @@ module StripeHelper
     allow(Stripe::Checkout::Session).to receive(:create).and_return(checkout_session)
     checkout_session
   end
+
+  def stripe_webhook_signature(payload, secret: WEBHOOK_SIGNING_SECRET, timestamp: Time.current)
+    signature = Stripe::Webhook::Signature.compute_signature(timestamp, payload, secret)
+    Stripe::Webhook::Signature.generate_header(timestamp, signature)
+  end
+
+  def deliver_stripe_webhook(payload:, signature: nil, path: StripeHelper::WEBHOOK_PATH)
+    headers = {"CONTENT_TYPE" => "application/json"}
+    headers["Stripe-Signature"] = signature if signature
+
+    post path, params: payload, headers: headers
+  end
+
+  def with_stripe_event_signing_secret(secret)
+    previous = StripeEvent.signing_secret
+    StripeEvent.signing_secret = secret
+    yield
+  ensure
+    StripeEvent.signing_secret = previous
+  end
 end
 
 RSpec.configure do |config|
   config.include StripeHelper, type: :feature
+  config.include StripeHelper, type: :request
 end

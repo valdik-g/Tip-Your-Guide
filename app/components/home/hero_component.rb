@@ -128,7 +128,11 @@ module Home
     end
 
     def icon_link_path
-      current_user.present? ? root_path : new_session_path
+      current_user.present? ? edit_admin_profile_path : new_session_path
+    end
+
+    def icon_label
+      current_user.present? ? t("home.hero.edit_profile") : t("home.hero.sign_in")
     end
   end
 end

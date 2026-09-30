@@ -1,0 +1,43 @@
+<div class="relative mb-8 overflow-hidden w-full max-w-full px-2" style="max-height: 200px;">
+  <div style="filter: blur(4px); opacity: 0.6;"
+       class="text-gray-600 leading-relaxed px-4 py-8 break-all max-w-full overflow-hidden">
+    <p><%= blurred_text %></p>
+  </div>
+
+  <div class="absolute inset-0 flex items-center justify-center px-2">
+    <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 text-center
+               break-words bg-white/80 py-2 px-3 rounded w-full max-w-full">
+      <%= title %>
+    </h3>
+  </div>
+</div>
+
+<div class="subscription-teaser mb-8 w-full overflow-hidden rounded-2xl border border-gray-200 bg-white px-6 py-8 shadow-sm">
+  <div class="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-stretch sm:justify-between sm:text-left">
+    <div class="min-w-0">
+      <p class="inline-flex items-center rounded-full bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
+        <%= readers_count_label %>
+      </p>
+      <p class="mt-3 text-base font-semibold break-words hyphens-auto text-gray-900 sm:text-lg md:text-xl">
+        <%= t("subscription.teaser.headline") %>
+      </p>
+      <p class="mt-1 text-sm break-words text-gray-600">
+        <%= t("subscription.teaser.price") %>
+      </p>
+    </div>
+
+    <div class="w-full sm:w-auto sm:shrink-0 sm:flex sm:items-end">
+      <% if helpers.current_user %>
+        <%= button_to t(cta_label_key),
+              subscription_path,
+              method: :post,
+              data: {turbo: false},
+              class: helpers.cta_classes %>
+      <% else %>
+        <%= link_to t("subscription.teaser.login_to_subscribe"),
+              new_session_path,
+              class: helpers.cta_classes(type: :link) %>
+      <% end %>
+    </div>
+  </div>
+</div>

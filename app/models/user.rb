@@ -24,6 +24,10 @@ class User < ApplicationRecord
 
   has_one :waitlist, dependent: :destroy
 
+  has_one :subscription, dependent: :destroy
+
+  has_many :blog_posts, foreign_key: :author_id, dependent: :nullify
+
   before_validation :generate_slug, on: :create
 
   validates :email, presence: true, uniqueness: true
@@ -47,6 +51,10 @@ class User < ApplicationRecord
 
   def to_param
     slug
+  end
+
+  def has_active_subscription?
+    subscription&.accessible? || false
   end
 
   private

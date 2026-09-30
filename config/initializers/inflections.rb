@@ -17,4 +17,5 @@
 
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym "UI"
+  inflect.irregular "blog_post_premium", "blog_post_premiums"
 end

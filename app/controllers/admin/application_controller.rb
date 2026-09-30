@@ -8,6 +8,8 @@ module Admin
   class ApplicationController < Administrate::ApplicationController
     include Authentication
 
+    helper ButtonHelper
+
     before_action :require_authentication
 
     RESOURCES_AVAILABLE_TO_ALL_USERS = [

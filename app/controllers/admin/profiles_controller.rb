@@ -2,6 +2,7 @@ module Admin
   class ProfilesController < Admin::ApplicationController
     def edit
       @user = current_user
+      @subscription = current_user.subscription 
 
       render locals: {page: Administrate::Page::Form.new(UserProfileDashboard.new, @user), namespace: :admin}
     end

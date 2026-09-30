@@ -1,5 +1,44 @@
 module Admin
   class BlogPostsController < Admin::ApplicationController
+    def create
+      @blog_post = BlogPost.new(blog_post_params)
+
+      if @blog_post.save
+        redirect_to(
+          [namespace, @blog_post],
+          notice: translate_with_resource("create.success")
+        )
+      else
+        render :new, status: :unprocessable_entity, locals: {
+          page: Administrate::Page::Form.new(dashboard, @blog_post)
+        }
+      end
+    end
+
+    def update
+      @blog_post = BlogPost.find(params[:id])
+
+      if @blog_post.update(blog_post_params)
+        redirect_to(
+          [namespace, @blog_post],
+          notice: translate_with_resource("update.success")
+        )
+      else
+        render :edit, status: :unprocessable_entity, locals: {
+          page: Administrate::Page::Form.new(dashboard, @blog_post)
+        }
+      end
+    end
+
+    private
+
+    def blog_post_params
+      params.require(:blog_post).permit(
+        :title, :slug, :locale, :content, :meta_description, :meta_keywords, :published,
+        :published_at, :featured_image, :author_id, :author_name,
+        blog_post_premium_attributes: [:id, :premium_title, :premium_content, :_destroy]
+      )
+    end
     # Overwrite any of the RESTful controller actions to implement custom behavior
     # For example, you may want to send an email after a foo is updated.
     #

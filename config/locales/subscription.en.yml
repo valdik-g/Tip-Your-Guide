@@ -1,0 +1,33 @@
+en:
+  subscription:
+    subscribe: "Subscribe"
+    cancel: "Cancel subscription"
+    renew: "Renew subscription"
+    active_until: "Active until %{date}"
+    ended_at: "Ended on %{date}"
+    will_cancel_at: "Will be canceled on %{date}"
+    no_payment_after: "No further charges after this date."
+    next_charge: "Next charge: %{date}"
+    cancel_info: "After cancellation, you will keep access until the end of the paid period."
+    cancel_confirmation: "Are you sure you want to cancel your subscription?"
+    no_active_subscription: "You do not have an active subscription"
+    management: "Subscription management"
+    status: "Status"
+    payment_incomplete: "Paymnet is in progress. If the payment won't proceed in 24 hours you won't get an access."
+    payment_could_not_charged: "The payment could not be charged."
+    will_lose_access: Access will be closed in %{days} days.
+    update_card: Update card
+    teaser:
+      login_to_subscribe: "Log in to subscribe"
+      already_subscribed: "You already have an active subscription."
+      headline: "One subscription for every post"
+      price: "7 euros for exclusive content"
+      readers_count: "Join over %{count} readers"
+    flash:
+      success: "Thanks for subscribing!"
+      canceled: "Your subscription will be canceled at the end of the period."
+      renewed: "Subscription renewed!"
+      already_subscribed: "You already have an active subscription."
+      no_active_subscription: "You dont have an active subscription"
+      payment_canceled: "Payment canceled"
+      error: "Something went wrong. Please try again."
