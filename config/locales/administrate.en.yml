@@ -2,6 +2,7 @@ en:
   administrate:
     actions:
       add_another_resource: "Add Another %{name}"
+      destroy_nested: "Remove premium content"
     fields:
       author_field:
         other_author: "Other author (not a user)"
